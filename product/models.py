@@ -8,7 +8,7 @@ from django_jalali.db import models as jmodels
 
 class Product(models.Model):
     """
-    A product create by company
+    A product sell by company
     """
     name = models.CharField(max_length=50, verbose_name=_('product name'))
     slug = models.SlugField(max_length=50, unique=True, blank=False, null=False, verbose_name=_('product slug'))
