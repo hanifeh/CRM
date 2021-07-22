@@ -22,6 +22,9 @@ class Product(models.Model):
         return f'{self.name}'
 
     def save(self, *args, **kwargs):
+        """
+        auto add slug
+        """
         if not self.id:
             self.slug = slugify(self.name, allow_unicode=True)
         super().save(*args, **kwargs)
