@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    New Organization
+{% endblock %}
+{% block heading %}
+    <h3> Create </h3>
+{% endblock %}
+{% block pagetitle %}
+    New Organization
+{% endblock %}
+{% block content %}
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Organization Information</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" id="name" class="form-control" name="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" id="city" class="form-control" name="city">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="organization_phone_number">Contact Number</label>
+                                            <input type="tel" id="organization_phone_number" class="form-control"
+                                                   name="organization_phone_number" pattern="0[1-9]{2}[0-9]{8}"
+                                                   maxlength="11">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="organization_email">Email Address</label>
+                                            <input type="email" id="organization_email" class="form-control"
+                                                   name="organization_email"">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="number_of_employees">Number of Employee</label>
+                                            <input type="number" id="number_of_employees" class="form-control"
+                                                   name="number_of_employees">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="organization_products">Product</label>
+                                            {{ form.organization_products }}
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <h4 class="card-title">Purchasing Officer Information</h4>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="purchasing_officer_name">Name</label>
+                                            <input type="text" id="purchasing_officer_name" class="form-control"
+                                                   name="purchasing_officer_name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="purchasing_officer_phone_number">Phone Number</label>
+                                            <input type="tel" id="purchasing_officer_phone_number"
+                                                   class="form-control"
+                                                   name="purchasing_officer_phone_number"
+                                                   pattern="09[0-9]{9}" maxlength="11">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit"
+                                                class="btn btn-primary me-1 mb-1">Create
+                                        </button>
+                                        <button type="reset"
+                                                class="btn btn-danger me-1 mb-1">Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

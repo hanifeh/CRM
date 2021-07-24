@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ object.name }}
+{% endblock %}
+{% block heading %}
+    <h3>Organization : {{ object.name }} <a href="{% url 'organizations:edit-organization' object.slug %}" class="btn btn-secondary">Edit</a></h3>
+{% endblock %}
+{% block pagetitle %}
+    {{ object.name }}
+{% endblock %}
+{% block content %}
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Organization Information</h4>
+            </div>
+            <div class="card-body">
+                Contact Number : {{ object.organization_phone_number }}
+                <br>
+                Email Address : {{ object.organization_email }}
+                <br>
+                City : {{ object.city }}
+                <br>
+                Number of Employee : {{ object.number_of_employees }}
+                <br>
+                Product : {% for product in object.get_organization_products %}{{ product }}{% endfor %}
+                <br>
+                Suggested Product : {% for product in object.get_suggestion_products %}{{ product }} {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Purchasing Officer Information</h4>
+            </div>
+            <div class="card-body">
+                Name : {{ object.purchasing_officer_name }}
+                <br>
+                Phone Number : {{ object.purchasing_officer_phone_number }}
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <a href="" class="btn btn-primary">Quote</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

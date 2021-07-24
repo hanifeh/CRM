@@ -31,9 +31,9 @@
                 <ul class="menu">
                     <li class="sidebar-title">Menu</li>
                     <li class="sidebar-item ">
-                        <a href="{% url 'home' %}" class='sidebar-link'>
+                        <a href="{% url 'organizations:list-of-organizations' %}" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
-                            <span>Dashboard</span>
+                            <span>Organizations</span>
                         </a>
                     </li>
                 </ul>
@@ -48,7 +48,21 @@
             </a>
         </header>
         <div class="page-heading">
-            {% block heading %} Home {% endblock %}
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-md-6 order-md-1 order-last">
+                        {% block heading %} Home {% endblock %}
+                    </div>
+                    <div class="col-12 col-md-6 order-md-2 order-first">
+                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{% block pagetitle %}{% endblock %}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="page-content">
             <section class="row">
@@ -72,7 +86,6 @@
 
 <script src="{% static 'vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'vendors/apexcharts/apexcharts.js' %}"></script>
 <script src="{% static 'js/pages/dashboard.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 </body>

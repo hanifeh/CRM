@@ -131,8 +131,12 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = (
-    ("js", os.path.join(STATIC_ROOT, 'js')),
-    ("css", os.path.join(STATIC_ROOT, 'css')),
-    ("images", os.path.join(STATIC_ROOT, 'images')),
-)
+# STATICFILES_DIRS = (
+#     ("js", os.path.join(STATIC_ROOT, 'js')),
+#     ("css", os.path.join(STATIC_ROOT, 'css')),
+#     ("images", os.path.join(STATIC_ROOT, 'images')),
+# )
+
+LOGIN_URL = '/users/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

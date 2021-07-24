@@ -45,10 +45,19 @@ class Organization(models.Model):
         """
         give a list of product name (str)
         """
-        return " , ".join([product.name for product in self.organization_products.all()])
+        return [product.name for product in self.organization_products.all()]
 
     # change get_organization_products to organization products in admin
     get_organization_products.short_description = 'organization products'
+
+    def get_suggestion_products(self):
+        """
+        give a list of suggestion products
+        """
+        products = []
+        for product in self.organization_products.all():
+            products += product.get_products_suggestion()
+        return products
 
 
 class OrganizationProduct(models.Model):
@@ -72,7 +81,7 @@ class OrganizationProduct(models.Model):
         super().save(*args, **kwargs)
 
     def get_products_suggestion(self):
-        return " , ".join([product.name for product in self.products_suggestion.all()])
+        return [product.name for product in self.products_suggestion.all()]
 
     # change get_products_suggestion to products suggestion in admin
     get_products_suggestion.short_description = 'products suggestion'
