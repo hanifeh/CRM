@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'vendors/perfect-scrollbar/perfect-scrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/bootstrap-icons/bootstrap-icons.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
 </head>
 <body>
 <div id="app">
@@ -36,6 +37,18 @@
                             <span>Organizations</span>
                         </a>
                     </li>
+                    <li class="sidebar-item ">
+                        <a href="{% url 'organizations:create-organization' %}" class='sidebar-link'>
+                            <i class="bi bi-collection-fill"></i>
+                            <span>Add New Organization</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item ">
+                        <a href="{% url 'products:list-of-products' %}" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -57,7 +70,8 @@
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{% block pagetitle %}{% endblock %}</li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    {% block pagetitle %}{% endblock %}</li>
                             </ol>
                         </nav>
                     </div>
