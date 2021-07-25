@@ -31,12 +31,12 @@
                                 {% for organization in object_list %}
                                     <tr>
                                         <td class="text-bold-500"><a
-                                                href="{% url 'organizations:detail-of-organization' organization.slug %}">{{ organization.name }}</a>
+                                                href="{% url 'organizations:detail-organization' organization.slug %}">{{ organization.name }}</a>
                                         </td>
                                         <td>{{ organization.city }}</td>
                                         <td class="text-bold-500">{{ organization.purchasing_officer_name }}</td>
                                         <td>{{ organization.purchasing_officer_phone_number }}</td>
-                                        <td><a href="" class="btn btn-info">Report</a></td>
+                                        <td><a href="{% url 'followup:create-followup' organization.slug %}" class="btn btn-info">Report</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

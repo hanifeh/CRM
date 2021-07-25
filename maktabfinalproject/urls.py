@@ -24,7 +24,8 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('users/', include('django.contrib.auth.urls')),
     path('organizations/', include('organization.urls')),
-    path('products/', include('product.urls'))
+    path('products/', include('product.urls')),
+    path('followup/', include('followup.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

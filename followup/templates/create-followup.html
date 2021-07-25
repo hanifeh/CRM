@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Follow Up
+{% endblock %}
+{% block heading %}
+    <h3> Create </h3>
+{% endblock %}
+{% block pagetitle %}
+    Follow up
+{% endblock %}
+{% block content %}
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Information</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-7 col-12">
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" id="title" class="form-control" name="title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-12">
+                                        <div class="form-group">
+                                            <label for="body" class="form-label">Body</label>
+                                            <textarea type="text" id="body" class="form-control" name="body" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit"
+                                                class="btn btn-primary me-1 mb-1">Create
+                                        </button>
+                                        <button type="reset"
+                                                class="btn btn-danger me-1 mb-1">Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

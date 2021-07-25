@@ -17,7 +17,7 @@ def tax_status_off(modeladmin, request, queryset):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     """
-        product admin setting
+    product admin setting
     """
     list_display = (
         'name',

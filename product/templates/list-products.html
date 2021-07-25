@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Organizations
+    Products
 {% endblock %}
 {% block heading %}
-    <h3> Organizations </h3>
+    <h3> Products </h3>
 {% endblock %}
 {% block pagetitle %}
-    Organizations
+    Products
 {% endblock %}
 {% block content %}
     <section class="section">
@@ -39,7 +39,7 @@
                                                 <i class="far fa-times-circle fa-lg"></i>
                                             {% endif %}
                                         </td>
-                                        <td>{{ product.technical_specification }}</td>
+                                        <td>{{ product.technical_specification | truncatechars:20 }}</td>
                                         <td>
                                             {% if product.catalogue_pdf %}
                                                 <a href="/uploads/{{ product.catalogue_pdf }}"

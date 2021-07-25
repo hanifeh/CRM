@@ -54,10 +54,10 @@ class Organization(models.Model):
         """
         give a list of suggestion products
         """
-        products = []
+        products = set()
         for product in self.organization_products.all():
-            products += product.get_products_suggestion()
-        return products
+            products |= set(product.get_products_suggestion())
+        return list(products)
 
 
 class OrganizationProduct(models.Model):

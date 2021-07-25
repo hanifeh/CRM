@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ object.title }}
+{% endblock %}
+{% block heading %}
+    <h3>Follow Up : {{ object.title }}</h3>
+{% endblock %}
+{% block pagetitle %}
+    {{ object.title }}
+{% endblock %}
+{% block content %}
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Organization Information</h4>
+            </div>
+            <div class="card-body">
+                Body : {{ object.body }}
+                <br>
+                Creator : {{ object.creator }}
+                <br>
+                Created Time : {{ object.created_time.date }} {{ object.created_time.time }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
