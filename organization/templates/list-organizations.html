@@ -13,6 +13,11 @@
     Organizations
 {% endblock %}
 {% block content %}
+    <section class="" id="success">
+    </section>
+    <section class="block remove-top" id="error">
+    </section>
+    <section id="multiple-column-form">
     <section class="section">
         <div class="col-12">
             <div class="card">
@@ -39,7 +44,60 @@
                                         <td>{{ organization.city }}</td>
                                         <td class="text-bold-500">{{ organization.purchasing_officer_name }}</td>
                                         <td>{{ organization.purchasing_officer_phone_number }}</td>
-                                        <td><a href="{% url 'followup:create-followup' organization.slug %}" class="btn btn-info">Report</a></td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#{{ organization.slug }}">
+                                                Report
+                                            </button>
+                                            <!--login form Modal -->
+                                            <div class="modal fade text-left" id="{{ organization.slug }}" tabindex="-1"
+                                                 role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                     role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"
+                                                                id="myModalLabel33">{{ organization.name }}</h4>
+                                                            <button type="button" class="close" data-bs-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                        <form class="form" method="post">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" id="organization"
+                                                                       value="{{ organization.pk }}"
+                                                                       name="organization"
+                                                                       class="form-control organization"
+                                                                       data-organ="{{ organization.pk }}">
+
+                                                                <label for="title">Title: </label>
+                                                                <input type="text" placeholder="Title" id="title"
+                                                                       name="title" class="form-control title">
+
+                                                                <label for="body">Body: </label>
+                                                                <textarea type="text" placeholder="Body" id="body"
+                                                                          name="body"
+                                                                          class="form-control body" rows="3"></textarea>
+                                                                <br>
+                                                                <button type="button" class="btn btn-danger"
+                                                                        data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Close</span>
+                                                                </button>
+                                                                <button type="button"
+                                                                        class="btn btn-primary ml-1 button"
+                                                                        id="{{ organization.slug }}"
+                                                                        data-bs-dismiss="modal">
+                                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Send</span>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -49,11 +107,54 @@
                     {% endif %}
                     <div class="col-12 justify-content-end">
                         <a href="{% url 'organizations:create-organization' %}"
-                                class="btn btn-primary me-1 mb-1">Add new organization
+                           class="btn btn-primary me-1 mb-1">Add new organization
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+    <script>
+        $(document).ready(function () {
+            $(".button").click(function (event) {
+                var organization = $(this).siblings('.organization').val();
+                var title = $(this).siblings('.title').val();
+                var body = $(this).siblings('.body').val();
+                var csrf = window.CSRF_TOKEN;
+                var pathname = window.location.pathname;
+                $.ajax({
+                    method: 'POST',
+                    url: '/followup/createnew/',
+                    data: {
+                        csrfmiddlewaretoken: csrf,
+                        title: title,
+                        body: body,
+                        organization: organization,
+                    },
+                    success: function (response) {
+                        $('#success').append(
+                            $('<div class="alert alert-success alert-dismissible show fade">')
+                                .append($('<p>').append(response.massages))
+                                .append($('<button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="Close">'))
+                        );
+                    },
+                    error: function (response) {
+                        $('#error').append(
+                            $('<div class="alert alert-danger alert-dismissible show fade">')
+                                .append($('<p>').append(response.responseJSON.massages))
+                                .append($('<button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="Close">'))
+                        );
+                    },
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function form_submit() {
+            document.getElementById("testmodal").submit();
+        }
+    </script>
 {% endblock %}
