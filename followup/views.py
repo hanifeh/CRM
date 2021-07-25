@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView
 from . import models, forms
@@ -19,13 +20,21 @@ class ViewCreateFollowUp(LoginRequiredMixin, CreateView):
         kw.update({'organization': organ})
         return kw
 
+    def form_invalid(self, form):
+        super(ViewCreateFollowUp, self).form_invalid(form)
+        return JsonResponse({'massages': "Title or body cannot be blank."}, status=400)
+
     def form_valid(self, form):
-        form.instance.creator = self.request.user
-        form.instance.organization = models.Organization.objects.get(slug=self.kwargs['slug'])
-        return super().form_valid(form)
+        try:
+            form.instance.creator = self.request.user
+            form.instance.organization = models.Organization.objects.get(slug=self.kwargs['slug'])
+            super().form_valid(form)
+        except:
+            return JsonResponse({'massages': "Title must be unique."}, status=400)
+        return JsonResponse({'massages': "Follow Up created successfully."}, status=201)
 
     def get_success_url(self):
-        return reverse('organizations:detail-of-organization', kwargs={'slug': self.kwargs['slug']})
+        return reverse('organizations:detail-organization', kwargs={'slug': self.kwargs['slug']})
 
 
 class ViewDetailFollowUp(LoginRequiredMixin, DetailView):

@@ -64,7 +64,16 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="organization_products">Product</label>
-                                            {{ form.organization_products }}
+                                            <select class="choices form-select multiple-remove"
+                                                    name="organization_products" id="organization_products"
+                                                    multiple="multiple">
+                                                {% for product in organization.organization_products.all %}
+                                                    <option value="{{ product.id }}" selected>{{ product }}</option>
+                                                {% endfor %}
+                                                {% for product in extra_product %}
+                                                    <option value="{{ product.id }}">{{ product }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="card-header">
@@ -84,7 +93,8 @@
                                             <input type="tel" id="purchasing_officer_phone_number"
                                                    class="form-control"
                                                    name="purchasing_officer_phone_number"
-                                                   value="{{ object.purchasing_officer_phone_number }}" pattern="09[0-9]{9}" maxlength="11">
+                                                   value="{{ object.purchasing_officer_phone_number }}"
+                                                   pattern="09[0-9]{9}" maxlength="11">
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">

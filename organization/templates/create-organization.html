@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     New Organization
 {% endblock %}
 {% block heading %}
     <h3> Create </h3>
+{% endblock %}
+{% block NewOrganization %}
+    active
 {% endblock %}
 {% block pagetitle %}
     New Organization
@@ -59,7 +62,13 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="organization_products">Product</label>
-                                            {{ form.organization_products }}
+                                            <select class="choices form-select multiple-remove"
+                                                    name="organization_products" id="organization_products"
+                                                    multiple="multiple">
+                                                {% for product in organization_products %}
+                                                    <option value="{{ product.id }}">{{ product }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="card-header">

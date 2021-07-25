@@ -10,6 +10,10 @@
     Follow up
 {% endblock %}
 {% block content %}
+    <section class="" id="success">
+    </section>
+    <section class="block remove-top" id="error">
+    </section>
     <section id="multiple-column-form">
         <div class="row match-height">
             <div class="col-12">
@@ -25,29 +29,63 @@
                                     <div class="col-md-7 col-12">
                                         <div class="form-group">
                                             <label for="title">Title</label>
-                                            <input type="text" id="title" class="form-control" name="title">
+                                            <input type="text" id="title" class="form-control" name="title" required>
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-12">
                                         <div class="form-group">
                                             <label for="body" class="form-label">Body</label>
-                                            <textarea type="text" id="body" class="form-control" name="body" rows="3"></textarea>
+                                            <textarea type="text" id="body" class="form-control" name="body"
+                                                      rows="3" required></textarea>
                                         </div>
-                                    </div>
-                                    <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit"
-                                                class="btn btn-primary me-1 mb-1">Create
-                                        </button>
-                                        <button type="reset"
-                                                class="btn btn-danger me-1 mb-1">Reset
-                                        </button>
                                     </div>
                                 </div>
                             </form>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" id="submit"
+                                        class="btn btn-primary me-1 mb-1">Create
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+    <script>
+        $(document).ready(function () {
+            $("#submit").click(function (event) {
+                var title = $('#title').val();
+                var body = $('#body').val();
+                var csrf = window.CSRF_TOKEN
+                var pathname = window.location.pathname;
+                $.ajax({
+                    method: 'POST',
+                    url: pathname,
+                    data: {
+                        csrfmiddlewaretoken: csrf,
+                        title: title,
+                        body: body,
+                    },
+                    success: function (response) {
+                        $('#success').append(
+                            $('<div class="alert alert-success alert-dismissible show fade">')
+                                .append($('<p>').append(response.massages))
+                                .append($('<button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="Close">'))
+                        );
+                    },
+                    error: function (response) {
+                        $('#error').append(
+                            $('<div class="alert alert-danger alert-dismissible show fade">')
+                                .append($('<p>').append(response.responseJSON.massages))
+                                .append($('<button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="Close">'))
+                        );
+                    },
+                });
+            });
+        });
+    </script>
 {% endblock %}

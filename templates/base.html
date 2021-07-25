@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Home {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -13,6 +17,9 @@
     <link rel="stylesheet" href="{% static 'vendors/bootstrap-icons/bootstrap-icons.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/choices.js/choices.min.css' %}">
+    {% block extrealink %}
+    {% endblock %}
 </head>
 <body>
 <div id="app">
@@ -31,19 +38,19 @@
             <div class="sidebar-menu">
                 <ul class="menu">
                     <li class="sidebar-title">Menu</li>
-                    <li class="sidebar-item ">
+                    <li class="sidebar-item {% block Organizations %}{% endblock %}">
                         <a href="{% url 'organizations:list-organizations' %}" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Organizations</span>
                         </a>
                     </li>
-                    <li class="sidebar-item ">
+                    <li class="sidebar-item {% block NewOrganization %}{% endblock %}">
                         <a href="{% url 'organizations:create-organization' %}" class='sidebar-link'>
                             <i class="bi bi-collection-fill"></i>
                             <span>Add New Organization</span>
                         </a>
                     </li>
-                    <li class="sidebar-item ">
+                    <li class="sidebar-item {% block Products %}{% endblock %}">
                         <a href="{% url 'products:list-products' %}" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Products</span>
@@ -102,6 +109,9 @@
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/pages/dashboard.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'vendors/choices.js/choices.min.js' %}"></script>
+{% block script %}
+{% endblock %}
 </body>
 
 </html>

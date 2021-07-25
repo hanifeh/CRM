@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from organization import models, forms
+from organization.models import OrganizationProduct
 
 
 class ViewListOrganizations(LoginRequiredMixin, ListView):
@@ -43,6 +44,15 @@ class ViewEditOrganization(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('organizations:detail-organization', kwargs={'slug': self.object.slug})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_organization_product = OrganizationProduct.objects.all()
+        organization = models.Organization.objects.get(slug=self.kwargs['slug'], creator=self.request.user)
+        our_organization_product = organization.organization_products.all()
+        organization_products = all_organization_product.difference(our_organization_product)
+        context['extra_product'] = organization_products
+        return context
+
 
 class ViewCreateOrganization(LoginRequiredMixin, CreateView):
     """
@@ -51,6 +61,7 @@ class ViewCreateOrganization(LoginRequiredMixin, CreateView):
     models = models.Organization
     form_class = forms.OrganizationCreateForm
     template_name = 'create-organization.html'
+    extra_context = {'organization_products': OrganizationProduct.objects.all()}
 
     def get_form_kwargs(self):
         kw = super().get_form_kwargs()
