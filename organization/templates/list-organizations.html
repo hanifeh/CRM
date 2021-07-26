@@ -17,7 +17,6 @@
     </section>
     <section class="block remove-top" id="error">
     </section>
-    <section id="multiple-column-form">
     <section class="section">
         <div class="col-12">
             <div class="card">
@@ -45,7 +44,8 @@
                                         <td class="text-bold-500">{{ organization.purchasing_officer_name }}</td>
                                         <td>{{ organization.purchasing_officer_phone_number }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#{{ organization.slug }}">
                                                 Report
                                             </button>
@@ -70,7 +70,6 @@
                                                                        name="organization"
                                                                        class="form-control organization"
                                                                        data-organ="{{ organization.pk }}">
-
                                                                 <label for="title">Title : </label>
                                                                 <input type="text" placeholder="Title" id="title"
                                                                        name="title" class="form-control title">

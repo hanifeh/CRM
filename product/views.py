@@ -1,10 +1,8 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
-
 from product import models
 
 
-class ViewListProducts(LoginRequiredMixin, ListView):
+class ViewListProducts(ListView):
     """
     :return List of Products
     """

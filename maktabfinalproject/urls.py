@@ -27,6 +27,7 @@ urlpatterns = [
     path('organizations/', include('organization.urls')),
     path('products/', include('product.urls')),
     path('followup/', include('followup.urls')),
+    path('quote/', include('quote.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
 ]
 

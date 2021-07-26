@@ -58,7 +58,6 @@ class ViewCreateOrganization(LoginRequiredMixin, CreateView):
     """
     create new organization
     """
-    models = models.Organization
     form_class = forms.OrganizationCreateForm
     template_name = 'create-organization.html'
     extra_context = {'organization_products': OrganizationProduct.objects.all()}

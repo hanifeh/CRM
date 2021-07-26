@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Create Quote
+{% endblock %}
+{% block heading %}
+    <h3> Create New Quote </h3>
+{% endblock %}
+{% block NewQuote %}
+    active
+{% endblock %}
+{% block pagetitle %}
+    Create Quote
+{% endblock %}
+{% block content %}
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Quote Information</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form id="form-container" method="POST">
+                                {% csrf_token %}
+                                {{ formset.management_form }}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="organization">Organization</label>
+                                        <select class="choices form-select"
+                                                name="organization" id="organization">
+                                            <optgroup label="Organization">
+                                                {% for organization in organizations %}
+                                                    <option value="{{ organization.id }}">{{ organization }}</option>
+                                                {% endfor %}
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <label for="organization">Items</label>
+                                <br>
+                                <br>
+                                {% for form in formset %}
+                                    <div class="formset">
+                                        <div class="col-md-8 col-12">
+                                            <div class="form-group">
+                                                <div class="col-md-12 mb-3">
+                                                    <div class="input-group mb-3">
+                                                        <select class="form-select" name="form-0-product"
+                                                                id="id_form-0-product" required>
+                                                            <option selected>Product...</option>
+                                                            {% for product in products %}
+                                                                <option value="{{ product.id }}">{{ product }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <input type="number" class="form-control" name="form-0-quantity"
+                                                               min="0" id="id_form-0-quantity"
+                                                               placeholder="Quantity" required>
+                                                        <input type="number" class="form-control" name="form-0-discount"
+                                                               min="0" max="100" id="id_form-0-discount"
+                                                               placeholder="Discount %" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <button id="add-form" type="button" class="btn btn-secondary me-1 mb-1">Add
+                                    Another Item
+                                </button>
+                                <button type="submit" class="btn btn-primary me-1 mb-1">Create Quote</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}
+    <script>
+        let birdForm = document.querySelectorAll(".formset")
+        let container = document.querySelector("#form-container")
+        let addButton = document.querySelector("#add-form")
+        let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+        let formNum = birdForm.length - 1
+        addButton.addEventListener('click', addForm)
+        function addForm(e) {
+            e.preventDefault()
+            let newForm = birdForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`, 'g')
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`);
+            container.insertBefore(newForm, addButton)
+            totalForms.setAttribute('value', `${formNum + 1}`)}
+    </script>
+{% endblock %}

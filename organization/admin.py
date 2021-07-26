@@ -2,27 +2,10 @@ from django.contrib import admin
 from .models import Organization, OrganizationProduct
 
 
-@admin.register(OrganizationProduct)
-class OrganizationProductAdmin(admin.ModelAdmin):
-    """
-    organization product admin setting
-    """
-    list_display = (
-        'name',
-        'get_products_suggestion',
-    )
-    list_filter = (
-        'products_suggestion',
-    )
-    search_fields = (
-        'name__icontains',
-    )
-
-
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
     """
-        organization admin setting
+    organization admin setting
     """
     list_display = (
         'name',
@@ -40,4 +23,21 @@ class OrganizationAdmin(admin.ModelAdmin):
     list_filter = (
         'city',
         'organization_products',
+    )
+
+
+@admin.register(OrganizationProduct)
+class OrganizationProductAdmin(admin.ModelAdmin):
+    """
+    organization product admin setting
+    """
+    list_display = (
+        'name',
+        'get_products_suggestion',
+    )
+    list_filter = (
+        'products_suggestion',
+    )
+    search_fields = (
+        'name__icontains',
     )

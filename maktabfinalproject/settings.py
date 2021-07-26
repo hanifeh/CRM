@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'product',
     'organization',
     'followup',
+    'quote',
 ]
 
 MIDDLEWARE = [
