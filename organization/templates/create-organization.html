@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% load static %}
 {% block title %}
     New Organization
@@ -28,47 +29,37 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="name">Name</label>
-                                            <input type="text" id="name" class="form-control" name="name">
+                                            {% render_field form.name class+="form-control" type="text" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="city">City</label>
-                                            <input type="text" id="city" class="form-control" name="city">
+                                            {% render_field form.city class+="form-control" type="text" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="organization_phone_number">Contact Number</label>
-                                            <input type="tel" id="organization_phone_number" class="form-control"
-                                                   name="organization_phone_number" pattern="0[1-9]{2}[0-9]{8}"
-                                                   maxlength="11">
+                                            {% render_field form.organization_phone_number class+="form-control" type="tel" pattern="0[1-9]{2}[0-9]{8}" maxlength="11" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="organization_email">Email Address</label>
-                                            <input type="email" id="organization_email" class="form-control"
-                                                   name="organization_email">
+                                            {% render_field form.organization_email class+="form-control" type="email" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="number_of_employees">Number of Employee</label>
-                                            <input type="number" id="number_of_employees" class="form-control"
-                                                   name="number_of_employees">
+                                            {% render_field form.number_of_employees class+="form-control" type="number" min='1' %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="organization_products">Product</label>
-                                            <select class="choices form-select multiple-remove"
-                                                    name="organization_products" id="organization_products"
-                                                    multiple="multiple">
-                                                {% for product in organization_products %}
-                                                    <option value="{{ product.id }}">{{ product }}</option>
-                                                {% endfor %}
-                                            </select>
+                                            {% render_field form.organization_products class+="choices form-select multiple-remove" %}
                                         </div>
                                     </div>
                                     <div class="card-header">
@@ -77,21 +68,17 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="purchasing_officer_name">Name</label>
-                                            <input type="text" id="purchasing_officer_name" class="form-control"
-                                                   name="purchasing_officer_name">
+                                            {% render_field form.purchasing_officer_name class+="form-control" type="text" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="purchasing_officer_phone_number">Phone Number</label>
-                                            <input type="tel" id="purchasing_officer_phone_number"
-                                                   class="form-control"
-                                                   name="purchasing_officer_phone_number"
-                                                   pattern="09[0-9]{9}" maxlength="11">
+                                            {% render_field form.purchasing_officer_phone_number class+="form-control" type="tel" pattern="09[0-9]{9}" maxlength="11" %}
                                         </div>
                                     </div>
                                     <div class="col-12 justify-content-end">
-                                    <br>
+                                        <br>
                                         <button type="submit"
                                                 class="btn btn-primary me-1 mb-1">Create
                                         </button>

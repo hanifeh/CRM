@@ -8,7 +8,6 @@ from django.views.generic import TemplateView, ListView, DetailView
 from . import models
 from .forms import QuoteItemCreateFormSet
 from organization.models import Organization
-from product.models import Product
 
 
 class ViewCreateQuote(LoginRequiredMixin, TemplateView):
@@ -20,8 +19,7 @@ class ViewCreateQuote(LoginRequiredMixin, TemplateView):
     def get(self, *args, **kwargs):
         formset = QuoteItemCreateFormSet(queryset=models.QuoteItem.objects.none())
         organizations = Organization.objects.filter(creator=self.request.user)
-        products = Product.objects.all()
-        return self.render_to_response({'formset': formset, 'organizations': organizations, 'products': products})
+        return self.render_to_response({'formset': formset, 'organizations': organizations})
 
     def post(self, *args, **kwargs):
         formset = QuoteItemCreateFormSet(data=self.request.POST)

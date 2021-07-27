@@ -3,3 +3,4 @@ psycopg2-binary
 Pillow
 django-jalali
 weasyprint
+django-widget-tweaks

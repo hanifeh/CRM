@@ -64,20 +64,20 @@ class QuoteItem(models.Model):
 
     def get_total_price(self):
         total_price = self.get_total_start_price()
-        if self.product.tax_status:
-            total_price += (9 * total_price / 100)
         if self.discount:
             total_price -= (self.discount * total_price / 100)
-        return int(total_price)
-
-    def get_total_tax(self):
-        total_tax = 0
         if self.product.tax_status:
-            total_tax = (9 * (self.get_total_start_price()) / 100)
-        return int(total_tax)
+            total_price += (9 * total_price / 100)
+        return int(total_price)
 
     def get_total_discount(self):
         total_discount = 0
         if self.discount:
-            total_discount = (self.discount * (self.get_total_start_price()+self.get_total_tax()) / 100)
+            total_discount = (self.discount * (self.get_total_start_price()) / 100)
         return int(total_discount)
+
+    def get_total_tax(self):
+        total_tax = 0
+        if self.product.tax_status:
+            total_tax = (9 * (self.get_total_start_price()-self.get_total_discount()) / 100)
+        return int(total_tax)

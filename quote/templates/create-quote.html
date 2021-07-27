@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% load static %}
 {% block title %}
     Create Quote
@@ -48,12 +49,7 @@
                                                     <div class="input-group mb-3">
                                                         <label class="input-group-text"
                                                                for="id_form-0-product">Product</label>
-                                                        <select class="form-select" name="form-0-product"
-                                                                id="id_form-0-product" required>
-                                                            {% for product in products %}
-                                                                <option value="{{ product.id }}">{{ product }}</option>
-                                                            {% endfor %}
-                                                        </select>
+                                                        {% render_field form.product class+="form-select" attr='required' %}
                                                         <input type="number" class="form-control" name="form-0-quantity"
                                                                min="1" id="id_form-0-quantity"
                                                                placeholder="Quantity" required>

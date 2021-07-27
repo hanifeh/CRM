@@ -32,8 +32,8 @@
                                     <th>Product Name</th>
                                     <th>Quantity</th>
                                     <th>Price</th>
-                                    <th>Tax</th>
                                     <th>Discount</th>
+                                    <th>Tax</th>
                                     <th>Total Price</th>
                                 </tr>
                                 </thead>
@@ -43,8 +43,8 @@
                                         <td class="text-bold-500">{{ quoteitem.product.name }}</td>
                                         <td>{{ quoteitem.quantity }}</td>
                                         <td>{{ quoteitem.product.price }}</td>
-                                        <td>{{ quoteitem.get_total_tax }}</td>
                                         <td>-{{ quoteitem.discount }}%</td>
+                                        <td>{{ quoteitem.get_total_tax }}</td>
                                         <td>{{ quoteitem.get_total_price }}</td>
                                     </tr>
                                 {% endfor %}
@@ -52,8 +52,8 @@
                                     <td>Total:</td>
                                     <td>{{ object.get_total_quantity }}</td>
                                     <td>{{ object.get_total_start_price }}</td>
-                                    <td>{{ object.get_quote_tax }}</td>
                                     <td>{{ object.get_quote_discount }}</td>
+                                    <td>{{ object.get_quote_tax }}</td>
                                     <td>{{ object.get_total_price }}</td>
                                 </tr>
                                 </tbody>
