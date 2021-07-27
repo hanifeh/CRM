@@ -46,8 +46,8 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 mb-3">
                                                     <div class="input-group mb-3">
-                                                    <label class="input-group-text"
-                                                        for="id_form-0-product">Product</label>
+                                                        <label class="input-group-text"
+                                                               for="id_form-0-product">Product</label>
                                                         <select class="form-select" name="form-0-product"
                                                                 id="id_form-0-product" required>
                                                             {% for product in products %}
@@ -86,6 +86,7 @@
         let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
         let formNum = birdForm.length - 1
         addButton.addEventListener('click', addForm)
+
         function addForm(e) {
             e.preventDefault()
             let newForm = birdForm[0].cloneNode(true)
@@ -93,6 +94,7 @@
             formNum++
             newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`);
             container.insertBefore(newForm, addButton)
-            totalForms.setAttribute('value', `${formNum + 1}`)}
+            totalForms.setAttribute('value', `${formNum + 1}`)
+        }
     </script>
 {% endblock %}

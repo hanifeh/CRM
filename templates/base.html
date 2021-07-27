@@ -113,6 +113,21 @@
         </div>
         <div class="page-content">
             <section class="row">
+                {# Django's messages #}
+                <div class="row mt-3 mb-3">
+                    <div class="col-12">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{% if message.tags == 'success' %}{{ message.tags }}{% else %}{{ 'danger' }}{% endif %} alert-dismissible show fade">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                {# django's messages ends #}
                 {% block content %}
                 {% endblock %}
             </section>
