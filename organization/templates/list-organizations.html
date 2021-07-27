@@ -20,8 +20,35 @@
     <section class="section">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">{{ user.username | capfirst }} Organizations</h4>
+                <div class="row">
+                    <div class="card-header col-md-5 col-12">
+                        <h4 class="card-title">{{ user.username | capfirst }} Organizations</h4>
+                    </div>
+                    <div class="card-header col-md-6 col-12">
+                        <form action="" method="get">
+                            <div class="row">
+                                <div class="col-md-5 col-12">
+                                    <div class="form-group position-relative has-icon-left">
+                                        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <select class="form-select" name="mode" id="mode" required>
+                                        <option value="name" selected>Organization Name</option>
+                                        <option value="city">City</option>
+                                        <option value="purchasing_officer_name">Purchasing Officer</option>
+                                        <option value="purchasing_officer_number">Purchasing Officer Number</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 col-12">
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -74,8 +101,7 @@
                                                                     <input type="hidden" id="organization"
                                                                            value="{{ organization.pk }}"
                                                                            name="organization"
-                                                                           class="form-control organization"
-                                                                           data-organ="{{ organization.pk }}">
+                                                                           class="form-control organization">
                                                                     <label for="title">Title : </label>
                                                                     <input type="text" placeholder="Title" id="title"
                                                                            name="title" class="form-control title"
@@ -112,11 +138,6 @@
                             </div>
                             <br>
                         {% endif %}
-                        <div class="col-12 justify-content-end">
-                            <a href="{% url 'organizations:create-organization' %}"
-                               class="btn btn-primary me-1 mb-1">Add new organization
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,20 @@ class ViewListOrganizations(LoginRequiredMixin, ListView):
     template_name = 'list-organizations.html'
 
     def get_queryset(self):
-        organizations = models.Organization.objects.filter(creator=self.request.user)
+        search = self.request.GET.get('search', None)
+        mode = self.request.GET.get('mode', None)
+        if mode == 'name':
+            organizations = models.Organization.objects.filter(name__contains=search, creator=self.request.user)
+        elif mode == 'city':
+            organizations = models.Organization.objects.filter(city__contains=search, creator=self.request.user)
+        elif mode == 'purchasing_officer_name':
+            organizations = models.Organization.objects.filter(purchasing_officer_name__contains=search,
+                                                               creator=self.request.user)
+        elif mode == 'purchasing_officer_number':
+            organizations = models.Organization.objects.filter(purchasing_officer_phone_number__contains=search,
+                                                               creator=self.request.user)
+        else:
+            organizations = models.Organization.objects.filter(creator=self.request.user)
         return organizations
 
 

@@ -61,6 +61,14 @@
                         </li>
                     {% endif %}
                     {% if user.is_authenticated %}
+                        <li class="sidebar-item {% block Quotes %}{% endblock %}">
+                            <a href="{% url 'quote:list-quotes' %}" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Quotes</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
                         <li class="sidebar-item {% block NewQuote %}{% endblock %}">
                             <a href="{% url 'quote:create-quote' %}" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>

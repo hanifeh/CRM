@@ -12,15 +12,15 @@ class ViewDetailFollowUp(LoginRequiredMixin, DetailView):
     template_name = 'detail-followup.html'
 
     def get_queryset(self):
-        organization = models.FollowUp.objects.filter(slug=self.kwargs['slug'], creator=self.request.user)
-        return organization
+        followup = models.FollowUp.objects.filter(slug=self.kwargs['slug'], creator=self.request.user)
+        return followup
 
 
 class ViewCreateFollowUp(LoginRequiredMixin, CreateView):
     """
     create new Follow up
     """
-    models = models.FollowUp
+    model = models.FollowUp
     form_class = forms.FollowUpCreateForm
 
     def get_form_kwargs(self):
@@ -32,6 +32,8 @@ class ViewCreateFollowUp(LoginRequiredMixin, CreateView):
         return JsonResponse({'massages': "Title or body cannot be blank."}, status=400)
 
     def form_valid(self, form):
+        if not form.instance.organization.creator == self.request.user:
+            return JsonResponse({'massages': "Organization not found."}, status=400)
         try:
             form.instance.creator = self.request.user
             self.object = form.save()

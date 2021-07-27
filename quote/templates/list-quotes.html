@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Products
+    Quotes
 {% endblock %}
 {% block heading %}
-    <h3> Products </h3>
+    <h3> Quotes </h3>
 {% endblock %}
-{% block Products %}
+{% block Quotes %}
     active
 {% endblock %}
 {% block pagetitle %}
-    Products
+    Quotes
 {% endblock %}
 {% block content %}
     <section class="section">
@@ -18,15 +18,14 @@
             <div class="card">
                 <div class="row">
                     <div class="card-header col-md-5 col-12">
-                        <h4 class="card-title">All Products</h4>
+                        <h4 class="card-title">All Quotes</h4>
                     </div>
                     <div class="card-header col-md-6 col-12">
                         <form action="" method="get">
                             <div class="row">
                                 <div class="col-md-5 col-12">
                                     <div class="form-group position-relative has-icon-left">
-                                        <input type="text" class="form-control" placeholder="Search" name="search"
-                                               id="search">
+                                        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
                                         <div class="form-control-icon">
                                             <i class="bi bi-search"></i>
                                         </div>
@@ -34,8 +33,8 @@
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <select class="form-select" name="mode" id="mode" required>
-                                        <option value="name" selected>Product Name</option>
-                                        <option value="technical_specification">Technical Specification</option>
+                                        <option value="organization" selected>Organization</option>
+                                        <option value="product">Product</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2 col-12">
@@ -53,36 +52,22 @@
                                 <table class="table table-light mb-0">
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Tax</th>
-                                        <th>Technical Specification</th>
-                                        <th>Catalogue</th>
+                                        <th>Organization</th>
+                                        <th>Items</th>
+                                        <th>Create Time</th>
+                                        <th>PDF</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for product in object_list %}
+                                    {% for quote in object_list %}
                                         <tr>
-                                            <td class="text-bold-500">{{ product.name }}</td>
-                                            <td>{{ product.price }}</td>
-                                            <td>
-                                                {% if product.tax_status %}
-                                                    <i class="far fa-check-circle fa-lg"></i>
-                                                {% else %}
-                                                    <i class="far fa-times-circle fa-lg"></i>
-                                                {% endif %}
-                                            </td>
-                                            <td>{{ product.technical_specification | truncatechars:20 }}</td>
-                                            <td>
-                                                {% if product.catalogue_pdf %}
-                                                    <a href="/uploads/{{ product.catalogue_pdf }}"
-                                                       class="btn btn-primary">PDF</a>
-                                                {% endif %}
-                                                {% if product.catalogue_image %}
-                                                    <a href="/uploads/{{ product.catalogue_image }}"
-                                                       class="btn btn-primary">Image</a>
-                                                {% endif %}
-                                            </td>
+                                            <td class="text-bold-500">{{ quote.organization }}</td>
+                                            <td>{% for item in quote.quoteitem_set.all %}
+                                                {{ item.product }} {% endfor %}</td>
+                                            <td>{{ quote.create_time.date }} {{ quote.create_time.time }}</td>
+                                            <td>next</td>
+                                            <td>next</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
