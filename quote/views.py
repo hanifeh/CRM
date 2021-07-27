@@ -1,8 +1,10 @@
+import weasyprint
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from . import models
 from .forms import QuoteItemCreateFormSet
 from organization.models import Organization
@@ -58,3 +60,33 @@ class ViewListQuote(LoginRequiredMixin, ListView):
         else:
             quotes = models.Quote.objects.filter(creator=self.request.user)
         return quotes
+
+
+class ViewDetailQuote(LoginRequiredMixin, DetailView):
+    """
+    :return one Quote
+    """
+    model = models.Quote
+    template_name = 'detail-quote.html'
+
+    def get_queryset(self):
+        quote = models.Quote.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
+        return quote
+
+
+class GetPDFQuote(LoginRequiredMixin, DetailView):
+    """
+    generate Quote to pdf
+    """
+    template_name = 'pdf-quote.html'
+    model = models.Quote
+
+    def get_queryset(self):
+        quote = models.Quote.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
+        return quote
+
+    def get(self, request, *args, **kwargs):
+        g = super().get(request, *args, **kwargs)
+        rendered_content = g.rendered_content
+        pdf = weasyprint.HTML(string=rendered_content).write_pdf()
+        return HttpResponse(pdf, content_type='application/pdf')

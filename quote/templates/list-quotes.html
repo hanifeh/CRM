@@ -62,11 +62,11 @@
                                     <tbody>
                                     {% for quote in object_list %}
                                         <tr>
-                                            <td class="text-bold-500">{{ quote.organization }}</td>
+                                            <td class="text-bold-500"><a href="{% url 'quote:detail-quotes' quote.pk %}">{{ quote.organization }}</a></td>
                                             <td>{% for item in quote.quoteitem_set.all %}
                                                 {{ item.product }} {% endfor %}</td>
                                             <td>{{ quote.create_time.date }} {{ quote.create_time.time }}</td>
-                                            <td>next</td>
+                                            <td><a href="{% url 'quote:pdf-quotes' quote.pk %}">PDF</a></td>
                                             <td>next</td>
                                         </tr>
                                     {% endfor %}
