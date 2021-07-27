@@ -40,22 +40,22 @@
                                 </div>
                                 <label for="organization">Items</label>
                                 <br>
-                                <br>
                                 {% for form in formset %}
                                     <div class="formset">
-                                        <div class="col-md-8 col-12">
+                                        <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <div class="col-md-12 mb-3">
                                                     <div class="input-group mb-3">
+                                                    <label class="input-group-text"
+                                                        for="id_form-0-product">Product</label>
                                                         <select class="form-select" name="form-0-product"
                                                                 id="id_form-0-product" required>
-                                                            <option selected>Product...</option>
                                                             {% for product in products %}
                                                                 <option value="{{ product.id }}">{{ product }}</option>
                                                             {% endfor %}
                                                         </select>
                                                         <input type="number" class="form-control" name="form-0-quantity"
-                                                               min="0" id="id_form-0-quantity"
+                                                               min="1" id="id_form-0-quantity"
                                                                placeholder="Quantity" required>
                                                         <input type="number" class="form-control" name="form-0-discount"
                                                                min="0" max="100" id="id_form-0-discount"
