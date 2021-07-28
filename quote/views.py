@@ -1,11 +1,15 @@
 import weasyprint
+from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from emailhistory.models import EmailHistory
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView
-from . import models
+from . import models, tasks
 from .forms import QuoteItemCreateFormSet
 from organization.models import Organization
 
@@ -79,12 +83,39 @@ class GetPDFQuote(LoginRequiredMixin, DetailView):
     template_name = 'pdf-quote.html'
     model = models.Quote
 
-    def get_queryset(self):
-        quote = models.Quote.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
-        return quote
+    def get(self, request, *args, **kwargs):
+        quote = models.Quote.objects.get(pk=self.kwargs['pk'], creator=self.request.user)
+        html = render_to_string('pdf-quote.html', {'object': quote})
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = f'filename=quote{quote.pk}.pdf'
+        weasyprint.HTML(string=html).write_pdf(response,
+                                               stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])
+        return response
+
+
+class DownloadPDFQuote(LoginRequiredMixin, DetailView):
+    """
+    Download Quote
+    """
+    template_name = 'pdf-quote.html'
+    model = models.Quote
 
     def get(self, request, *args, **kwargs):
-        g = super().get(request, *args, **kwargs)
-        rendered_content = g.rendered_content
-        pdf = weasyprint.HTML(string=rendered_content).write_pdf()
-        return HttpResponse(pdf, content_type='application/pdf')
+        quote = models.Quote.objects.get(pk=self.kwargs['pk'], creator=self.request.user)
+        html = render_to_string('pdf-quote.html', {'object': quote})
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename=quote{quote.pk}.pdf'
+        weasyprint.HTML(string=html).write_pdf(response,
+                                               stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])
+        return response
+
+
+@login_required
+def send_email(request, pk):
+    quote = models.Quote.objects.get(pk=pk, creator=request.user)
+    if quote:
+        body = render_to_string('pdf-quote.html', {'object': quote})
+        email = quote.organization.organization_email
+        sender = request.user.username
+        tasks.send_email_task.delay(body, sender, email)
+    return redirect(reverse_lazy('quote:list-quotes'))

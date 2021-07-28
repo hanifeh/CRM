@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-6xnw3@1&p#pk94vrs$n!f+7mosdi4wx&3^+23w^&9p4tud3@_2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'organization',
     'followup',
     'quote',
+    'emailhistory',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Media files (uploaded file)
 
@@ -143,3 +144,10 @@ LOGOUT_REDIRECT_URL = '/'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'testdjangoemail06@gmail.com'
+EMAIL_HOST_PASSWORD = 'wkykoakfihwcapps'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'testdjangoemail06@gmail.com'

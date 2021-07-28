@@ -55,7 +55,8 @@
                                         <th>Organization</th>
                                         <th>Items</th>
                                         <th>Create Time</th>
-                                        <th>PDF</th>
+                                        <th>Download PDF</th>
+                                        <th>View PDF</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -66,8 +67,9 @@
                                             <td>{% for item in quote.quoteitem_set.all %}
                                                 {{ item.product }} {% endfor %}</td>
                                             <td>{{ quote.create_time.date }} {{ quote.create_time.time }}</td>
-                                            <td><a href="{% url 'quote:pdf-quotes' quote.pk %}">PDF</a></td>
-                                            <td>next</td>
+                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:download-pdf-quotes' quote.pk %}">Download</a></td>
+                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:pdf-quotes' quote.pk %}">View</a></td>
+                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:send-email' quote.pk %}">Send Email</a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
