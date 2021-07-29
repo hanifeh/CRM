@@ -42,7 +42,7 @@ html {
       display: inline;
       margin: 0; }
     html dl dt {
-      color: #1ee494; }
+      color: #0a965c; }
       html dl dt::before {
         content: '';
         display: block; }
@@ -52,8 +52,8 @@ html {
     border-collapse: collapse;
     width: 100%; }
     html table th {
-      border-bottom: .2mm solid #1ee494;
-      color: #1ee494;
+      border-bottom: .2mm solid #7ee41e;
+      color: #6138dc;
       font-size: 10pt;
       font-weight: 400;
       padding-bottom: .25cm;
