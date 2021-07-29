@@ -118,7 +118,7 @@ def send_email(request, pk):
     """
     quote = models.Quote.objects.get(pk=pk, creator=request.user)
     if quote:
-        body = render_to_string('pdf-quote.html', {'object': quote})
+        body = render_to_string('email-quote.txt', {'object': quote})
         email = quote.organization.organization_email
         sender = request.user.username
         tasks.send_email_task.delay(body, sender, email)
