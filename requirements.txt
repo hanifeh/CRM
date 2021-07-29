@@ -2,6 +2,8 @@ Django~=3.2.5
 psycopg2-binary
 Pillow
 django-jalali
-weasyprint
+weasyprint~=52.5
 django-widget-tweaks
-celery
+celery~=5.1.2
+python-decouple
+django-debug-toolbar~=3.2.1
