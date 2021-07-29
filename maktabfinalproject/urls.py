@@ -19,6 +19,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+from organization.views import APIListOrganization
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +31,11 @@ urlpatterns = [
     path('products/', include('product.urls')),
     path('followup/', include('followup.urls')),
     path('quote/', include('quote.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/organizations', APIListOrganization.as_view(), name='organization-list-api'),
     path('__debug__/', include(debug_toolbar.urls)),
 ]
 

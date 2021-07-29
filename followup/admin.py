@@ -5,7 +5,7 @@ from .models import FollowUp
 @admin.register(FollowUp)
 class FollowUpAdmin(admin.ModelAdmin):
     """
-        Follow up admin setting
+    Follow up admin setting
     """
     list_display = (
         'title',

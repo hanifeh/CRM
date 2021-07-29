@@ -3,7 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
-from organization import models, forms
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from organization import models, forms, serializers
 from organization.models import OrganizationProduct
 
 
@@ -100,3 +103,17 @@ class ViewCreateOrganization(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('organizations:list-organizations')
+
+
+# API
+
+
+class APIListOrganization(ListAPIView):
+    serializer_class = serializers.OrganizationSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    queryset = models.Organization.objects.all()
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(creator=self.request.user)

@@ -3,11 +3,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.views.decorators.http import require_http_methods
 from django.views.generic import TemplateView, ListView, DetailView
 from . import models, tasks
 from .forms import QuoteItemCreateFormSet
@@ -110,8 +110,12 @@ class DownloadPDFQuote(LoginRequiredMixin, DetailView):
         return response
 
 
+@require_http_methods(["GET"])
 @login_required
 def send_email(request, pk):
+    """
+    send quote to organization by email
+    """
     quote = models.Quote.objects.get(pk=pk, creator=request.user)
     if quote:
         body = render_to_string('pdf-quote.html', {'object': quote})

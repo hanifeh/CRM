@@ -7,3 +7,5 @@ django-widget-tweaks
 celery~=5.1.2
 python-decouple
 django-debug-toolbar~=3.2.1
+djangorestframework-simplejwt
+djangorestframework
