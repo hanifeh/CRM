@@ -6,7 +6,7 @@ from . import models, forms
 
 class ViewDetailFollowUp(LoginRequiredMixin, DetailView):
     """
-    :return one Follow up
+    view for one Follow up detail
     """
     model = models.FollowUp
     template_name = 'detail-followup.html'
@@ -18,7 +18,7 @@ class ViewDetailFollowUp(LoginRequiredMixin, DetailView):
 
 class ViewCreateFollowUp(LoginRequiredMixin, CreateView):
     """
-    create new Follow up
+    view for create new Follow up
     """
     model = models.FollowUp
     form_class = forms.FollowUpCreateForm

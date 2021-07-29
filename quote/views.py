@@ -16,7 +16,7 @@ from organization.models import Organization
 
 class ViewCreateQuote(LoginRequiredMixin, TemplateView):
     """
-    Create one quote and many quote item
+    view for Create one quote and many quote item
     """
     template_name = "create-quote.html"
 
@@ -47,7 +47,7 @@ class ViewCreateQuote(LoginRequiredMixin, TemplateView):
 
 class ViewListQuote(LoginRequiredMixin, ListView):
     """
-    :return List of Quotes for one user
+    view for List of Quotes for one user
     """
     model = models.Quote
     template_name = 'list-quotes.html'
@@ -66,7 +66,7 @@ class ViewListQuote(LoginRequiredMixin, ListView):
 
 class ViewDetailQuote(LoginRequiredMixin, DetailView):
     """
-    :return one Quote
+    view for one Quote detail
     """
     model = models.Quote
     template_name = 'detail-quote.html'
@@ -95,7 +95,7 @@ class GetPDFQuote(LoginRequiredMixin, DetailView):
 
 class DownloadPDFQuote(LoginRequiredMixin, DetailView):
     """
-    Download Quote
+    Download Quote in pdf
     """
     template_name = 'pdf-quote.html'
     model = models.Quote

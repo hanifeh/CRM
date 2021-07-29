@@ -12,7 +12,7 @@ from organization.models import OrganizationProduct
 
 class ViewListOrganizations(LoginRequiredMixin, ListView):
     """
-    :return List of Organizations for one user
+    view for List of Organizations for one user
     """
     model = models.Organization
     template_name = 'list-organizations.html'
@@ -37,7 +37,7 @@ class ViewListOrganizations(LoginRequiredMixin, ListView):
 
 class ViewDetailOrganization(LoginRequiredMixin, DetailView):
     """
-    :return one organization
+    view for show one organization with detail
     """
     model = models.Organization
     template_name = 'detail-organization.html'
@@ -77,7 +77,7 @@ class ViewEditOrganization(LoginRequiredMixin, UpdateView):
 
 class ViewCreateOrganization(LoginRequiredMixin, CreateView):
     """
-    create new organization
+    view for create new organization
     """
     form_class = forms.OrganizationCreateForm
     template_name = 'create-organization.html'
@@ -109,6 +109,9 @@ class ViewCreateOrganization(LoginRequiredMixin, CreateView):
 
 
 class APIListOrganization(ListAPIView):
+    """
+    API with jwt for show all organization for one user
+    """
     serializer_class = serializers.OrganizationSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]

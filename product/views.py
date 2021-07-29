@@ -4,7 +4,7 @@ from product import models
 
 class ViewListProducts(ListView):
     """
-    :return List of Products
+    view for List of Products
     """
     model = models.Product
     template_name = 'list-products.html'
