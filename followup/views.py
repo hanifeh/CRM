@@ -4,7 +4,7 @@ from django.views.generic import CreateView, DetailView
 from . import models, forms
 
 
-class ViewDetailFollowUp(LoginRequiredMixin, DetailView):
+class FollowUpDetailView(LoginRequiredMixin, DetailView):
     """
     view for one Follow up detail
     """
@@ -16,7 +16,7 @@ class ViewDetailFollowUp(LoginRequiredMixin, DetailView):
         return followup
 
 
-class ViewCreateFollowUp(LoginRequiredMixin, CreateView):
+class FollowUpCreateView(LoginRequiredMixin, CreateView):
     """
     view for create new Follow up
     """

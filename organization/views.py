@@ -10,7 +10,7 @@ from organization import models, forms, serializers
 from organization.models import OrganizationProduct
 
 
-class ViewListOrganizations(LoginRequiredMixin, ListView):
+class OrganizationsListView(LoginRequiredMixin, ListView):
     """
     view for List of Organizations for one user
     """
@@ -35,7 +35,7 @@ class ViewListOrganizations(LoginRequiredMixin, ListView):
         return organizations
 
 
-class ViewDetailOrganization(LoginRequiredMixin, DetailView):
+class OrganizationDetailView(LoginRequiredMixin, DetailView):
     """
     view for show one organization with detail
     """
@@ -47,7 +47,7 @@ class ViewDetailOrganization(LoginRequiredMixin, DetailView):
         return organization
 
 
-class ViewEditOrganization(LoginRequiredMixin, UpdateView):
+class OrganizationEditView(LoginRequiredMixin, UpdateView):
     """
     view for edit one organization
     """
@@ -75,7 +75,7 @@ class ViewEditOrganization(LoginRequiredMixin, UpdateView):
         return reverse('organizations:detail-organization', kwargs={'slug': self.object.slug})
 
 
-class ViewCreateOrganization(LoginRequiredMixin, CreateView):
+class OrganizationCreateView(LoginRequiredMixin, CreateView):
     """
     view for create new organization
     """
@@ -108,7 +108,7 @@ class ViewCreateOrganization(LoginRequiredMixin, CreateView):
 # API
 
 
-class APIListOrganization(ListAPIView):
+class OrganizationListAPI(ListAPIView):
     """
     API with jwt for show all organization for one user
     """

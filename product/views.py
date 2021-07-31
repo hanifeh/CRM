@@ -2,7 +2,7 @@ from django.views.generic import ListView
 from product import models
 
 
-class ViewListProducts(ListView):
+class ProductListView(ListView):
     """
     view for List of Products
     """

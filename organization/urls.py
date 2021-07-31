@@ -3,8 +3,8 @@ from . import views
 
 app_name = 'organizations'
 urlpatterns = [
-    path('all/', views.ViewListOrganizations.as_view(), name='list-organizations'),
-    path('detail/<str:slug>', views.ViewDetailOrganization.as_view(), name='detail-organization'),
-    path('edit/<str:slug>', views.ViewEditOrganization.as_view(), name='edit-organization'),
-    path('create/', views.ViewCreateOrganization.as_view(), name='create-organization'),
+    path('all/', views.OrganizationsListView.as_view(), name='list-organizations'),
+    path('detail/<str:slug>', views.OrganizationDetailView.as_view(), name='detail-organization'),
+    path('edit/<str:slug>', views.OrganizationEditView.as_view(), name='edit-organization'),
+    path('create/', views.OrganizationCreateView.as_view(), name='create-organization'),
 ]

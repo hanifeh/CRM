@@ -3,6 +3,6 @@ from . import views
 
 app_name = 'followup'
 urlpatterns = [
-    path('detail/<str:slug>', views.ViewDetailFollowUp.as_view(), name='detail-followup'),
-    path('create/', views.ViewCreateFollowUp.as_view(), name='create-followup'),
+    path('detail/<str:slug>', views.FollowUpDetailView.as_view(), name='detail-followup'),
+    path('create/', views.FollowUpCreateView.as_view(), name='create-followup'),
 ]
