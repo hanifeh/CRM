@@ -33,7 +33,7 @@ class OrganizationsListView(LoginRequiredMixin, ListView):
                                                                creator=self.request.user)
         else:
             organizations = models.Organization.objects.filter(creator=self.request.user)
-        return organizations
+        return organizations.order_by('-id')
 
 
 class OrganizationDetailView(LoginRequiredMixin, DetailView):

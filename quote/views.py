@@ -62,7 +62,7 @@ class QuoteListView(LoginRequiredMixin, ListView):
             quotes = models.Quote.objects.filter(quoteitem__product__name__contains=search, creator=self.request.user)
         else:
             quotes = models.Quote.objects.filter(creator=self.request.user)
-        return quotes
+        return quotes.order_by('-id')
 
 
 class QuoteDetailView(LoginRequiredMixin, DetailView):

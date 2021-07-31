@@ -19,4 +19,4 @@ class ProductListView(ListView):
             products = models.Product.objects.filter(technical_specification__contains=search)
         else:
             products = models.Product.objects.all()
-        return products
+        return products.order_by('-id')
