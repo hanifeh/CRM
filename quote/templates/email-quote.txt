@@ -5,7 +5,7 @@ Quote Created for {{ object.organization.name|safe }} in {{ object.create_time.d
 Product Name           Price            Quantity           Discount           Tax              Total Price
 
 {% for quoteitem in object.quoteitem_set.all %}
-{{ quoteitem.product.name }}           {{ quoteitem.product.price }}            {{ quoteitem.quantity }}            -{{ quoteitem.discount }}%            {{ quoteitem.get_total_tax }}           {{ quoteitem.get_total_price }}
+{{ quoteitem.product.name }}           {{ quoteitem.price }}            {{ quoteitem.quantity }}            -{{ quoteitem.discount }}%                  {% if quoteitem.product.tax_status %}9%{% else %}0%{% endif %}           {{ quoteitem.get_total_price }}
 {% endfor %}
 
 Total Quantity           Total Price            Total Discount           Total Tax          Total Due

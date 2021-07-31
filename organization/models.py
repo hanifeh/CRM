@@ -18,7 +18,7 @@ class Organization(models.Model):
     creator = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, verbose_name=_('creator'))
     create_time = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('create time'))
     name = models.CharField(max_length=50, unique=True, verbose_name=_('organization name'))
-    slug = models.SlugField(max_length=50, unique=True, editable=False, blank=False, null=False)
+    slug = models.SlugField(max_length=50, unique=True, editable=False)
     city = models.CharField(max_length=20, verbose_name=_('organization city'))
     organization_phone_number = models.CharField(validators=[organization_phone_regex], max_length=11, unique=True,
                                                  verbose_name=_('organization phone number'))
@@ -31,7 +31,7 @@ class Organization(models.Model):
                                                        verbose_name=_('purchasing officer phone number'))
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
     def save(self, *args, **kwargs):
         """
@@ -65,12 +65,12 @@ class OrganizationProduct(models.Model):
     product create by customer
     """
     name = models.CharField(max_length=50, unique=True, verbose_name=_('organization product name'))
-    slug = models.SlugField(max_length=50, unique=True, editable=False, blank=False, null=False)
+    slug = models.SlugField(max_length=50, unique=True, editable=False)
     created_date = jmodels.jDateField(auto_now_add=True, verbose_name=_('organization product created date'))
     products_suggestion = models.ManyToManyField('product.Product')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
     def save(self, *args, **kwargs):
         """

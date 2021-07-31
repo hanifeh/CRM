@@ -7,6 +7,7 @@
     <title>{% block title %} Home {% endblock %}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="shortcut icon" href="#">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -126,7 +127,7 @@
                     <div class="col-12">
                         {% if messages %}
                             {% for message in messages %}
-                                <div class="alert alert-{% if message.tags == 'success' %}{{ message.tags }}{% else %}{{ 'danger' }}{% endif %} alert-dismissible show fade">
+                                <div class="alert alert-{% if message.tags == 'success' %}{{ 'success' }}{% else %}{{ 'danger' }}{% endif %} alert-dismissible show fade">
                                     {{ message }}
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>

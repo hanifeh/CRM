@@ -50,6 +50,9 @@
                                                         <label class="input-group-text"
                                                                for="id_form-0-product">Product</label>
                                                         {% render_field form.product class+="form-select" attr='required' %}
+                                                        <input type="number" class="form-control" name="form-0-price"
+                                                               min="0" id="id_form-0-price"
+                                                               placeholder="Price" required>
                                                         <input type="number" class="form-control" name="form-0-quantity"
                                                                min="1" id="id_form-0-quantity"
                                                                placeholder="Quantity" required>

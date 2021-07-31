@@ -8,13 +8,13 @@ from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_http_methods
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from . import models, tasks
 from .forms import QuoteItemCreateFormSet
 from organization.models import Organization
 
 
-class ViewCreateQuote(LoginRequiredMixin, TemplateView):
+class QuoteCreateView(LoginRequiredMixin, CreateView):
     """
     view for Create one quote and many quote item
     """
@@ -45,7 +45,7 @@ class ViewCreateQuote(LoginRequiredMixin, TemplateView):
             return redirect(reverse_lazy('quote:create-quote'))
 
 
-class ViewListQuote(LoginRequiredMixin, ListView):
+class QuoteListView(LoginRequiredMixin, ListView):
     """
     view for List of Quotes for one user
     """
@@ -64,7 +64,7 @@ class ViewListQuote(LoginRequiredMixin, ListView):
         return quotes
 
 
-class ViewDetailQuote(LoginRequiredMixin, DetailView):
+class QuoteDetailView(LoginRequiredMixin, DetailView):
     """
     view for one Quote detail
     """
@@ -76,7 +76,7 @@ class ViewDetailQuote(LoginRequiredMixin, DetailView):
         return quote
 
 
-class GetPDFQuote(LoginRequiredMixin, DetailView):
+class QuoteGetPDF(LoginRequiredMixin, DetailView):
     """
     generate Quote to pdf
     """
@@ -93,7 +93,7 @@ class GetPDFQuote(LoginRequiredMixin, DetailView):
         return response
 
 
-class DownloadPDFQuote(LoginRequiredMixin, DetailView):
+class QuoteDownloadPDF(LoginRequiredMixin, DetailView):
     """
     Download Quote in pdf
     """
@@ -122,4 +122,8 @@ def send_email(request, pk):
         email = quote.organization.organization_email
         sender = request.user.username
         tasks.send_email_task.delay(body, sender, email)
-    return redirect(reverse_lazy('quote:list-quotes'))
+        messages.success(request, 'Send email request saved successfully.')
+        return redirect(reverse_lazy('quote:list-quotes'))
+    else:
+        messages.error(request, 'Permission denied.')
+        return redirect(reverse_lazy('quote:list-quotes'))

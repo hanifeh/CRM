@@ -11,17 +11,17 @@ class FollowUp(models.Model):
     A Follow up write by one user for one organization
     """
     title = models.CharField(max_length=50, verbose_name=_('follow up title'))
-    slug = models.SlugField(max_length=50, unique=True, editable=False, blank=False, null=False)
+    slug = models.SlugField(max_length=50, unique=True, editable=False)
     created_time = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('follow up created time'))
     creator = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, verbose_name=_('creator'))
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, verbose_name=_('organization'))
     body = models.TextField(verbose_name=_('follow up body'))
 
     class Meta:
-        unique_together = [['title', 'creator', 'organization']]
+        unique_together = [['title', 'organization']]
 
     def __str__(self):
-        return f'{self.title}'
+        return self.title
 
     def save(self, *args, **kwargs):
         """

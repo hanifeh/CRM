@@ -35,6 +35,7 @@ class QuoteItemAdmin(admin.ModelAdmin):
         'pk',
         'quote',
         'product',
+        'price',
         'quantity',
         'discount',
     )
@@ -50,6 +51,7 @@ class QuoteItemAdmin(admin.ModelAdmin):
         'product__icontains',
     )
     list_editable = (
+        'price',
         'quantity',
         'discount',
     )

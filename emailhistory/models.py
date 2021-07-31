@@ -12,4 +12,3 @@ class EmailHistory(models.Model):
     create_time = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('create time'))
     email_status = models.BooleanField(default=True, verbose_name=_('email status'))
     email = models.CharField(max_length=50, verbose_name=_('email'))
-
