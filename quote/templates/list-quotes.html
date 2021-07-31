@@ -20,6 +20,7 @@
                     <div class="card-header col-md-5 col-12">
                         <h4 class="card-title">All Quotes</h4>
                     </div>
+                    {% if page_obj %}
                     <div class="card-header col-md-6 col-12">
                         <form action="" method="get">
                             <div class="row">
@@ -43,6 +44,7 @@
                             </div>
                         </form>
                     </div>
+                    {% endif %}
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -76,8 +78,7 @@
                                 </table>
                             </div>
                             <br>
-                        {% endif %}
-                        <div class="card-body">
+                            <div class="card-body">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination pagination-primary justify-content-center">
                                     <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}"><a class="page-link" href="?page=1">
@@ -102,6 +103,7 @@
                                 </ul>
                             </nav>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
