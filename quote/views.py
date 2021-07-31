@@ -51,6 +51,7 @@ class QuoteListView(LoginRequiredMixin, ListView):
     """
     model = models.Quote
     template_name = 'list-quotes.html'
+    paginate_by = 10
 
     def get_queryset(self):
         search = self.request.GET.get('search', None)

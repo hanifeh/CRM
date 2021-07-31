@@ -8,6 +8,7 @@ class ProductListView(ListView):
     """
     model = models.Product
     template_name = 'list-products.html'
+    paginate_by = 10
 
     def get_queryset(self):
         search = self.request.GET.get('search', None)

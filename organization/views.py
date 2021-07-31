@@ -16,6 +16,7 @@ class OrganizationsListView(LoginRequiredMixin, ListView):
     """
     model = models.Organization
     template_name = 'list-organizations.html'
+    paginate_by = 10
 
     def get_queryset(self):
         search = self.request.GET.get('search', None)
