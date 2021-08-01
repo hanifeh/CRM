@@ -1,0 +1,257 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-01 15:36+0430\n"
+"PO-Revision-Date: 2021-08-01 15:40+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: organization/models.py:18
+msgid "creator"
+msgstr "سازنده"
+
+#: organization/models.py:19
+msgid "create time"
+msgstr "زمان ساخت"
+
+#: organization/models.py:20
+msgid "organization name"
+msgstr "نام اورگان"
+
+#: organization/models.py:22
+msgid "organization city"
+msgstr "شهر اورگان"
+
+#: organization/models.py:24
+msgid "organization phone number"
+msgstr "شماره تماس اورگان"
+
+#: organization/models.py:25
+msgid "organization email address"
+msgstr "ایمیل اورگان"
+
+#: organization/models.py:27
+msgid "number of employees"
+msgstr "شمار کارکنان"
+
+#: organization/models.py:29
+msgid "purchasing officer name"
+msgstr "نام مامور خرید"
+
+#: organization/models.py:31
+msgid "purchasing officer phone number"
+msgstr "شماره تماس مامور خرید"
+
+#: organization/models.py:34
+msgid "organization"
+msgstr "اورگان"
+
+#: organization/models.py:35
+msgid "organizations"
+msgstr "اورگان ها"
+
+#: organization/models.py:71
+msgid "organization product name"
+msgstr "نام محصول تولیدی اورگان"
+
+#: organization/models.py:73
+msgid "organization product created date"
+msgstr "زمان ساخت محصول اورگان"
+
+#: organization/models.py:77
+msgid "organization product"
+msgstr "محصول اورگان"
+
+#: organization/models.py:78
+msgid "organization products"
+msgstr "محصولات اورگان"
+
+#: organization/templates/create-organization.html:6
+msgid "New Organization"
+msgstr "اورگان جدید"
+
+#: organization/templates/create-organization.html:9
+msgid "Create Organization"
+msgstr "ساخت اورگان"
+
+#: organization/templates/create-organization.html:25
+msgid "Organization Information"
+msgstr "اطلاعات اورگان"
+
+#: organization/templates/create-organization.html:29
+#: organization/templates/create-organization.html:68
+#: organization/templates/detail-organization.html:37
+#: organization/templates/edit-organization.html:25
+#: organization/templates/edit-organization.html:64
+msgid "Name"
+msgstr "نام"
+
+#: organization/templates/create-organization.html:35
+#: organization/templates/detail-organization.html:21
+#: organization/templates/edit-organization.html:31
+#: organization/templates/list-organizations.html:40
+#: organization/templates/list-organizations.html:62
+msgid "City"
+msgstr "شهر"
+
+#: organization/templates/create-organization.html:41
+#: organization/templates/detail-organization.html:17
+#: organization/templates/edit-organization.html:37
+msgid "Contact Number"
+msgstr "شماره تلفن"
+
+#: organization/templates/create-organization.html:47
+#: organization/templates/detail-organization.html:19
+#: organization/templates/edit-organization.html:43
+msgid "Email Address"
+msgstr "ایمیل"
+
+#: organization/templates/create-organization.html:53
+#: organization/templates/detail-organization.html:23
+#: organization/templates/edit-organization.html:49
+msgid "Number of Employee"
+msgstr "شمار کارکنان"
+
+#: organization/templates/create-organization.html:59
+#: organization/templates/detail-organization.html:25
+#: organization/templates/edit-organization.html:55
+msgid "Product"
+msgstr "محصول"
+
+#: organization/templates/create-organization.html:64
+#: organization/templates/detail-organization.html:34
+#: organization/templates/edit-organization.html:60
+msgid "Purchasing Officer Information"
+msgstr "اطلاعات مامور خرید"
+
+#: organization/templates/create-organization.html:74
+#: organization/templates/detail-organization.html:39
+#: organization/templates/edit-organization.html:70
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+#: organization/templates/create-organization.html:81
+msgid "Create"
+msgstr "ساخت"
+
+#: organization/templates/create-organization.html:84
+msgid "Reset"
+msgstr "ریست"
+
+#: organization/templates/detail-organization.html:7
+#: organization/templates/list-organizations.html:4
+#: organization/templates/list-organizations.html:7
+#: organization/templates/list-organizations.html:22
+msgid "Organizations"
+msgstr "اورگان ها"
+
+#: organization/templates/detail-organization.html:8
+#: organization/templates/edit-organization.html:8
+#: organization/templates/edit-organization.html:77
+msgid "Edit"
+msgstr "ویرایش"
+
+#: organization/templates/detail-organization.html:14
+#: organization/templates/edit-organization.html:21
+msgid "Organizations Information"
+msgstr "اطلاعات اورگان"
+
+#: organization/templates/detail-organization.html:27
+msgid "Suggested Product"
+msgstr "محصول پیشنهادی"
+
+#: organization/templates/detail-organization.html:52
+msgid "Number"
+msgstr "شماره"
+
+#: organization/templates/detail-organization.html:53
+msgid "Follow Up Title"
+msgstr "موضوع پیگیری"
+
+#: organization/templates/detail-organization.html:54
+#: organization/templates/list-organizations.html:110
+#: organization/templates/list-organizations.html:111
+msgid "Body"
+msgstr "متن"
+
+#: organization/templates/detail-organization.html:55
+msgid "Creator"
+msgstr "سازنده"
+
+#: organization/templates/detail-organization.html:56
+msgid "Create Time"
+msgstr "زمان ساخت"
+
+#: organization/templates/list-organizations.html:30
+#: organization/templates/list-organizations.html:46
+msgid "Search"
+msgstr "جستجو"
+
+#: organization/templates/list-organizations.html:39
+#: organization/templates/list-organizations.html:61
+msgid "Organization Name"
+msgstr "نام اورگان"
+
+#: organization/templates/list-organizations.html:41
+#: organization/templates/list-organizations.html:63
+msgid "Purchasing Officer"
+msgstr "مامور خرید"
+
+#: organization/templates/list-organizations.html:42
+#: organization/templates/list-organizations.html:64
+msgid "Purchasing Officer Number"
+msgstr "نام مامور خرید"
+
+#: organization/templates/list-organizations.html:65
+msgid "Actions"
+msgstr "اقدام"
+
+#: organization/templates/list-organizations.html:81
+msgid "Report"
+msgstr "گزارش"
+
+#: organization/templates/list-organizations.html:105
+#: organization/templates/list-organizations.html:106
+msgid "Title"
+msgstr "موضوع"
+
+#: organization/templates/list-organizations.html:119
+msgid "Close"
+msgstr "بستن"
+
+#: organization/templates/list-organizations.html:126
+msgid "Send"
+msgstr "ارسال"
+
+#: organization/views.py:65 organization/views.py:73 organization/views.py:103
+msgid "Invalid input."
+msgstr "مقادیر وارد شده صحیح نمی باشد."
+
+#: organization/views.py:70
+msgid "Organization edited successfully."
+msgstr "اورگان با موفقیت ویرایش شد."
+
+#: organization/views.py:100
+msgid "Organization created successfully."
+msgstr "اورگان با موفقیت ثبت شد."
+
+#~ msgid "Information"
+#~ msgstr "اطلاعات"
+
+#~ msgid "Title : "
+#~ msgstr "موضوع : "
+
+#~ msgid "Body : "
+#~ msgstr "متن : "

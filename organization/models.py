@@ -30,6 +30,10 @@ class Organization(models.Model):
     purchasing_officer_phone_number = models.CharField(validators=[phone_regex], max_length=11,
                                                        verbose_name=_('purchasing officer phone number'))
 
+    class Meta:
+        verbose_name = _('organization')
+        verbose_name_plural = _('organizations')
+
     def __str__(self):
         return self.name
 
@@ -68,6 +72,10 @@ class OrganizationProduct(models.Model):
     slug = models.SlugField(max_length=50, unique=True, editable=False)
     created_date = jmodels.jDateField(auto_now_add=True, verbose_name=_('organization product created date'))
     products_suggestion = models.ManyToManyField('product.Product')
+
+    class Meta:
+        verbose_name = _('organization product')
+        verbose_name_plural = _('organization products')
 
     def __str__(self):
         return self.name

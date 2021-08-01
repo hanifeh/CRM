@@ -1,0 +1,198 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-01 15:36+0430\n"
+"PO-Revision-Date: 2021-08-01 15:31+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: quote/models.py:15
+msgid "creator"
+msgstr "نویسنده"
+
+#: quote/models.py:16
+msgid "organization"
+msgstr "اورگان"
+
+#: quote/models.py:17
+msgid "create time"
+msgstr "زمان ساخت"
+
+#: quote/models.py:20 quote/models.py:81
+msgid "quote"
+msgstr "پیش فاکتور"
+
+#: quote/models.py:21
+msgid "quotes"
+msgstr "پیش فاکتورها"
+
+#: quote/models.py:82
+msgid "product"
+msgstr "محصول"
+
+#: quote/models.py:83
+msgid "price"
+msgstr "قیمت"
+
+#: quote/models.py:84
+msgid "quantity"
+msgstr "تعداد"
+
+#: quote/models.py:85
+msgid "discount"
+msgstr "تخفیف"
+
+#: quote/models.py:88
+msgid "quote item"
+msgstr "ایتم پیش فاکتور"
+
+#: quote/models.py:89
+msgid "quote items"
+msgstr "ایتم های پیش فاکتور"
+
+#: quote/templates/create-quote.html:6 quote/templates/create-quote.html:68
+msgid "Create Quote"
+msgstr "ثبت پیش فاکتور"
+
+#: quote/templates/create-quote.html:9
+msgid "Create New Quote"
+msgstr "ثبت پیش فاکتور جدید"
+
+#: quote/templates/create-quote.html:20
+msgid "Quote Information"
+msgstr "اطلاعات پیش فاکتور"
+
+#: quote/templates/create-quote.html:29 quote/templates/list-quotes.html:34
+#: quote/templates/list-quotes.html:54
+msgid "Organization"
+msgstr "اورگان"
+
+#: quote/templates/create-quote.html:40 quote/templates/list-quotes.html:55
+msgid "Items"
+msgstr "ایتم های"
+
+#: quote/templates/create-quote.html:49 quote/templates/list-quotes.html:35
+msgid "Product"
+msgstr "محصول"
+
+#: quote/templates/create-quote.html:53 quote/templates/detail-quote.html:30
+msgid "Price"
+msgstr "قیمت"
+
+#: quote/templates/create-quote.html:56 quote/templates/detail-quote.html:29
+msgid "Quantity"
+msgstr "تعداد"
+
+#: quote/templates/create-quote.html:59 quote/templates/detail-quote.html:31
+msgid "Discount"
+msgstr "تخفیف"
+
+#: quote/templates/create-quote.html:66
+msgid "Add Another Item"
+msgstr "اضافه کردن ایتم"
+
+#: quote/templates/detail-quote.html:4 quote/templates/detail-quote.html:7
+#: quote/templates/list-quotes.html:65
+msgid "Quote"
+msgstr "پیش فاکتور"
+
+#: quote/templates/detail-quote.html:15
+msgid "Quote for"
+msgstr "پیش فاکتور برای"
+
+#: quote/templates/detail-quote.html:18
+msgid "Quote Date"
+msgstr "تاریخ پیش فاکتور"
+
+#: quote/templates/detail-quote.html:28
+msgid "Product Name"
+msgstr "نام محصول"
+
+#: quote/templates/detail-quote.html:32
+msgid "Tax"
+msgstr "مالیات"
+
+#: quote/templates/detail-quote.html:33 quote/templates/detail-quote.html:60
+msgid "Total Price"
+msgstr "قیمت کل"
+
+#: quote/templates/detail-quote.html:59
+msgid "Total Quantity"
+msgstr "تعداد کل"
+
+#: quote/templates/detail-quote.html:61
+msgid "Total Discount"
+msgstr "تخفیف کل"
+
+#: quote/templates/detail-quote.html:62
+msgid "Total Tax"
+msgstr "مالیات کل"
+
+#: quote/templates/detail-quote.html:63
+msgid "Final Price"
+msgstr "قیمت نهای"
+
+#: quote/templates/list-quotes.html:4 quote/templates/list-quotes.html:7
+#: quote/templates/list-quotes.html:18
+msgid "Quotes"
+msgstr "پیش فاکتورها"
+
+#: quote/templates/list-quotes.html:26 quote/templates/list-quotes.html:39
+msgid "Search"
+msgstr "جستجو"
+
+#: quote/templates/list-quotes.html:56
+msgid "Create Time"
+msgstr "زمان ساخت"
+
+#: quote/templates/list-quotes.html:57
+msgid "Download PDF"
+msgstr "دانلود پی دی اف"
+
+#: quote/templates/list-quotes.html:58
+msgid "View PDF"
+msgstr "مشاهده پی دی اف"
+
+#: quote/templates/list-quotes.html:59
+msgid "Actions"
+msgstr "اقدام"
+
+#: quote/templates/list-quotes.html:69
+msgid "Download"
+msgstr "دانلود"
+
+#: quote/templates/list-quotes.html:70
+msgid "View"
+msgstr "مشاهده"
+
+#: quote/templates/list-quotes.html:71
+msgid "Send Email"
+msgstr "ارسال ایمیل"
+
+#: quote/views.py:42
+msgid "Quote create successfully."
+msgstr "پیش فاکتور با موفقیت ثبت شد."
+
+#: quote/views.py:45
+msgid "Invalid input."
+msgstr "اطلاعات ورودی اشتباه است."
+
+#: quote/views.py:127
+msgid "Send email request saved successfully."
+msgstr "درخاست ارسال ایمیل با موفقیت ثبت شد."
+
+#: quote/views.py:130
+msgid "Permission denied."
+msgstr "دسترسی ندارید."

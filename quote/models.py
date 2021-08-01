@@ -16,6 +16,10 @@ class Quote(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, verbose_name=_('organization'))
     create_time = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('create time'))
 
+    class Meta:
+        verbose_name = _('quote')
+        verbose_name_plural = _('quotes')
+
     def __str__(self):
         return f'{self.organization}'
 
@@ -79,6 +83,10 @@ class QuoteItem(models.Model):
     price = models.PositiveIntegerField(default=0, verbose_name=_('price'))
     quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)], verbose_name=_('quantity'))
     discount = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(100)], verbose_name=_('discount'))
+
+    class Meta:
+        verbose_name = _('quote item')
+        verbose_name_plural = _('quote items')
 
     def __str__(self):
         return f'{self.quote} {self.product}'

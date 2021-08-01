@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-01 15:36+0430\n"
+"PO-Revision-Date: 2021-08-01 15:38+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: followup/models.py:13
+msgid "follow up title"
+msgstr "موضوع پیگیری"
+
+#: followup/models.py:15
+msgid "follow up created time"
+msgstr "زمان پیگیری"
+
+#: followup/models.py:16
+msgid "creator"
+msgstr "نویسنده"
+
+#: followup/models.py:17
+msgid "organization"
+msgstr "اورگان"
+
+#: followup/models.py:18
+msgid "follow up body"
+msgstr "متن پیگیری"
+
+#: followup/models.py:22
+msgid "follow up"
+msgstr "پیگیری"
+
+#: followup/models.py:23
+msgid "follow ups"
+msgstr "پیگیری ها"
+
+#: followup/templates/create-followup.html:4
+#: followup/templates/detail-followup.html:7
+msgid "Follow Up"
+msgstr "پیگیری"
+
+#: followup/templates/create-followup.html:7
+#: followup/templates/create-followup.html:44
+msgid "Create"
+msgstr "نویسنده"
+
+#: followup/templates/create-followup.html:19
+#: followup/templates/detail-followup.html:13
+msgid "Information"
+msgstr "اطلاعات"
+
+#: followup/templates/create-followup.html:28
+msgid "Title"
+msgstr "موضوع"
+
+#: followup/templates/create-followup.html:34
+#: followup/templates/detail-followup.html:16
+msgid "Body"
+msgstr "متن"
+
+#: followup/templates/detail-followup.html:18
+msgid "Creator"
+msgstr "نویسنده"
+
+#: followup/templates/detail-followup.html:20
+msgid "Created Time"
+msgstr "زمان پیگیری"
+
+#: followup/views.py:33
+msgid "Title or body cannot be blank."
+msgstr "موضوع یا متن نمی تواند خالی باشد."
+
+#: followup/views.py:37
+msgid "Organization not found."
+msgstr "اورگان یافت نشد."
+
+#: followup/views.py:42
+msgid "Title must be unique."
+msgstr "موضوع نمی تواند تکراری باشد."
+
+#: followup/views.py:43
+msgid "Follow Up created successfully."
+msgstr "پیگیری با موفقیت ثبت شد."
+
+#~ msgid "Follow up"
+#~ msgstr "پیگیری"

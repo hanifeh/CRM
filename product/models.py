@@ -18,6 +18,10 @@ class Product(models.Model):
                                         verbose_name=_('product catalogue image'))
     catalogue_pdf = models.FileField(upload_to='pdf', blank=True, null=True, verbose_name=_('product catalogue pdf'))
 
+    class Meta:
+        verbose_name = _('product')
+        verbose_name_plural = _('products')
+
     def __str__(self):
         return self.name
 

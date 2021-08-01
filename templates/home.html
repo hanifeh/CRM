@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Home
+    {% trans 'Home' %}
 {% endblock %}
 {% block heading %}
-    <h3> Welcome {% if user.is_authenticated %}{{ user.username | capfirst }} !{% endif %}</h3>
+    <h3> {% trans 'Welcome' %} {% if user.is_authenticated %}{{ user.username | capfirst }} !{% endif %}</h3>
 {% endblock %}
 {% block content %}
     <div class="card">
         <div class="card-body">
             <div class="buttons">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="btn btn-primary">Log out</a>
+                    <a href="{% url 'logout' %}" class="btn btn-primary">{% trans 'Log out' %}</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-primary">Log in</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary">{% trans 'Log in' %}</a>
                 {% endif %}
             </div>
         </div>

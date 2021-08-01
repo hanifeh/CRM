@@ -19,6 +19,8 @@ class FollowUp(models.Model):
 
     class Meta:
         unique_together = [['title', 'organization']]
+        verbose_name = _('follow up')
+        verbose_name_plural = _('follow ups')
 
     def __str__(self):
         return self.title

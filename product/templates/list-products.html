@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Products
+    {% trans 'Products' %}
 {% endblock %}
 {% block heading %}
-    <h3> Products </h3>
+    <h3> {% trans 'Products' %} </h3>
 {% endblock %}
 {% block Products %}
     active
-{% endblock %}
-{% block pagetitle %}
-    Products
 {% endblock %}
 {% block content %}
     <section class="section">
@@ -18,7 +15,7 @@
             <div class="card">
                 <div class="row">
                     <div class="card-header col-md-5 col-12">
-                        <h4 class="card-title">All Products</h4>
+                        <h4 class="card-title">{% trans 'Products' %}</h4>
                     </div>
                     {% if page_obj %}
                     <div class="card-header col-md-6 col-12">
@@ -26,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-5 col-12">
                                     <div class="form-group position-relative has-icon-left">
-                                        <input type="text" class="form-control" placeholder="Search" name="search"
+                                        <input type="text" class="form-control" placeholder="{% trans 'Search' %}" name="search"
                                                id="search">
                                         <div class="form-control-icon">
                                             <i class="bi bi-search"></i>
@@ -35,12 +32,12 @@
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <select class="form-select" name="mode" id="mode" required>
-                                        <option value="name" selected>Product Name</option>
-                                        <option value="technical_specification">Technical Specification</option>
+                                        <option value="name" selected>{% trans 'Product Name' %}</option>
+                                        <option value="technical_specification">{% trans 'Technical Specification' %}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2 col-12">
-                                    <button type="submit" class="btn btn-primary me-1 mb-1">Search</button>
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">{% trans 'Search' %}</button>
                                 </div>
                             </div>
                         </form>
@@ -55,11 +52,11 @@
                                 <table class="table table-light mb-0">
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Tax</th>
-                                        <th>Technical Specification</th>
-                                        <th>Catalogue</th>
+                                        <th>{% trans 'Product Name' %}</th>
+                                        <th>{% trans 'Price' %}</th>
+                                        <th>{% trans 'Tax' %}</th>
+                                        <th>{% trans 'Technical Specification' %}</th>
+                                        <th>{% trans 'Catalogue' %}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -78,11 +75,11 @@
                                             <td>
                                                 {% if product.catalogue_pdf %}
                                                     <a href="/uploads/{{ product.catalogue_pdf }}"
-                                                       class="btn btn-primary">PDF</a>
+                                                       class="btn btn-primary">{% trans 'PDF' %}</a>
                                                 {% endif %}
                                                 {% if product.catalogue_image %}
                                                     <a href="/uploads/{{ product.catalogue_image }}"
-                                                       class="btn btn-primary">Image</a>
+                                                       class="btn btn-primary">{% trans 'Image' %}</a>
                                                 {% endif %}
                                             </td>
                                         </tr>

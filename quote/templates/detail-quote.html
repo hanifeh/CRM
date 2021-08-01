@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Quote
+    {% trans 'Quote' %}
 {% endblock %}
 {% block heading %}
-    <h3> Quote </h3>
-{% endblock %}
-{% block pagetitle %}
-    Quote
+    <h3> {% trans 'Quote' %} </h3>
 {% endblock %}
 {% block content %}
     <section class="section">
@@ -15,26 +12,25 @@
             <div class="card">
                 <div class="row">
                     <div class="card-header col-md-8 col-12">
-                        <h4 class="card-title">Quote for {{ object.organization.name }} by {{ object.creator }}</h4>
+                        <h4 class="card-title">{% trans 'Quote for' %} {{ object.organization.name }} by {{ object.creator }}</h4>
                     </div>
                     <div class="card-header col-md-4 col-12">
-                        <h4 class="card-title">Quote Date: {{ object.create_time.date }}</h4>
+                        <h4 class="card-title">{% trans 'Quote Date' %} : {{ object.create_time.date }}</h4>
                     </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-
                         <!-- table -->
                         <div class="table-responsive">
                             <table class="table table-light mb-0">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Discount</th>
-                                    <th>Tax</th>
-                                    <th>Total Price</th>
+                                    <th>{% trans 'Product Name' %}</th>
+                                    <th>{% trans 'Quantity' %}</th>
+                                    <th>{% trans 'Price' %}</th>
+                                    <th>{% trans 'Discount' %}</th>
+                                    <th>{% trans 'Tax' %}</th>
+                                    <th>{% trans 'Total Price' %}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -60,11 +56,11 @@
                             <div class="table-responsive">
                                 <table class="table table-light mb-0">
                                     <thead class="thead-dark">
-                                    <th>Total Quantity</th>
-                                    <th>Total Price</th>
-                                    <th>Total Discount</th>
-                                    <th>Total Tax</th>
-                                    <th>Final Price</th>
+                                    <th>{% trans 'Total Quantity' %}</th>
+                                    <th>{% trans 'Total Price' %}</th>
+                                    <th>{% trans 'Total Discount' %}</th>
+                                    <th>{% trans 'Total Tax' %}</th>
+                                    <th>{% trans 'Final Price' %}</th>
                                     </thead>
                                     <tbody>
                                     <tr>

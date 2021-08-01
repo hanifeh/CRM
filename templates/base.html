@@ -1,10 +1,12 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="{% if LANGUAGE_BIDI %}rtl{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Home {% endblock %}</title>
+    <title>{% block title %} {% trans 'Home' %} {% endblock %}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="shortcut icon" href="#">
@@ -36,12 +38,12 @@
             </div>
             <div class="sidebar-menu">
                 <ul class="menu">
-                    <li class="sidebar-title">Menu</li>
+                    <li class="sidebar-title">{% trans 'Menu' %}</li>
                     {% if not user.is_authenticated %}
                         <li class="sidebar-item">
                             <a href="{% url 'login' %}" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
-                                <span>Log in</span>
+                                <span>{% trans 'Log in' %}</span>
                             </a>
                         </li>
                     {% endif %}
@@ -49,7 +51,7 @@
                         <li class="sidebar-item {% block Organizations %}{% endblock %}">
                             <a href="{% url 'organizations:list-organizations' %}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Organizations</span>
+                                <span>{% trans 'Organizations' %}</span>
                             </a>
                         </li>
                     {% endif %}
@@ -57,7 +59,7 @@
                         <li class="sidebar-item {% block NewOrganization %}{% endblock %}">
                             <a href="{% url 'organizations:create-organization' %}" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
-                                <span>Add New Organization</span>
+                                <span>{% trans 'Add New Organization' %}</span>
                             </a>
                         </li>
                     {% endif %}
@@ -65,7 +67,7 @@
                         <li class="sidebar-item {% block Quotes %}{% endblock %}">
                             <a href="{% url 'quote:list-quotes' %}" class='sidebar-link'>
                                 <i class="bi bi-grid-1x2-fill"></i>
-                                <span>Quotes</span>
+                                <span>{% trans 'Quotes' %}</span>
                             </a>
                         </li>
                     {% endif %}
@@ -73,21 +75,21 @@
                         <li class="sidebar-item {% block NewQuote %}{% endblock %}">
                             <a href="{% url 'quote:create-quote' %}" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
-                                <span>Add New Quote</span>
+                                <span>{% trans 'Add New Quote' %}</span>
                             </a>
                         </li>
                     {% endif %}
                     <li class="sidebar-item {% block Products %}{% endblock %}">
                         <a href="{% url 'products:list-products' %}" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
-                            <span>Products</span>
+                            <span>{% trans 'Products' %}</span>
                         </a>
                     </li>
                     {% if user.is_authenticated %}
                         <li class="sidebar-item">
                             <a href="{% url 'logout' %}" class='sidebar-link'>
                                 <i class="bi bi-x-octagon-fill"></i>
-                                <span>Log out</span>
+                                <span>{% trans 'Log out' %}</span>
                             </a>
                         </li>
                     {% endif %}
@@ -106,16 +108,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        {% block heading %} Home {% endblock %}
-                    </div>
-                    <div class="col-12 col-md-6 order-md-2 order-first">
-                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    {% block pagetitle %}{% endblock %}</li>
-                            </ol>
-                        </nav>
+                        {% block heading %} {% trans 'Home' %} {% endblock %}
                     </div>
                 </div>
             </div>

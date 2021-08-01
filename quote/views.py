@@ -12,6 +12,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from . import models, tasks
 from .forms import QuoteItemCreateFormSet
 from organization.models import Organization
+from django.utils.translation import ugettext_lazy as _
 
 
 class QuoteCreateView(LoginRequiredMixin, CreateView):
@@ -38,10 +39,10 @@ class QuoteCreateView(LoginRequiredMixin, CreateView):
                     quote.delete()
                     messages.error(self.request, 'Invalid input.')
                     return redirect(reverse_lazy('quote:create-quote'))
-            messages.success(self.request, 'Quote create successfully.')
+            messages.success(self.request, _('Quote create successfully.'))
             return redirect(reverse_lazy("quote:list-quotes"))
         else:
-            messages.error(self.request, 'Invalid input.')
+            messages.error(self.request, _('Invalid input.'))
             return redirect(reverse_lazy('quote:create-quote'))
 
 
@@ -123,8 +124,8 @@ def send_email(request, pk):
         email = quote.organization.organization_email
         sender = request.user.username
         tasks.send_email_task.delay(body, sender, email)
-        messages.success(request, 'Send email request saved successfully.')
+        messages.success(request, _('Send email request saved successfully.'))
         return redirect(reverse_lazy('quote:list-quotes'))
     else:
-        messages.error(request, 'Permission denied.')
+        messages.error(request, _('Permission denied.'))
         return redirect(reverse_lazy('quote:list-quotes'))

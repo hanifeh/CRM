@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Quotes
+    {% trans 'Quotes' %}
 {% endblock %}
 {% block heading %}
-    <h3> Quotes </h3>
+    <h3> {% trans 'Quotes' %} </h3>
 {% endblock %}
 {% block Quotes %}
     active
-{% endblock %}
-{% block pagetitle %}
-    Quotes
 {% endblock %}
 {% block content %}
     <section class="section">
@@ -18,7 +15,7 @@
             <div class="card">
                 <div class="row">
                     <div class="card-header col-md-5 col-12">
-                        <h4 class="card-title">All Quotes</h4>
+                        <h4 class="card-title">{% trans 'Quotes' %}</h4>
                     </div>
                     {% if page_obj %}
                     <div class="card-header col-md-6 col-12">
@@ -26,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-5 col-12">
                                     <div class="form-group position-relative has-icon-left">
-                                        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+                                        <input type="text" class="form-control" placeholder="{% trans 'Search' %}" name="search" id="search">
                                         <div class="form-control-icon">
                                             <i class="bi bi-search"></i>
                                         </div>
@@ -34,12 +31,12 @@
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <select class="form-select" name="mode" id="mode" required>
-                                        <option value="organization" selected>Organization</option>
-                                        <option value="product">Product</option>
+                                        <option value="organization" selected>{% trans 'Organization' %}</option>
+                                        <option value="product">{% trans 'Product' %}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2 col-12">
-                                    <button type="submit" class="btn btn-primary me-1 mb-1">Search</button>
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">{% trans 'Search' %}</button>
                                 </div>
                             </div>
                         </form>
@@ -54,24 +51,24 @@
                                 <table class="table table-light mb-0">
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th>Organization</th>
-                                        <th>Items</th>
-                                        <th>Create Time</th>
-                                        <th>Download PDF</th>
-                                        <th>View PDF</th>
-                                        <th>Action</th>
+                                        <th>{% trans 'Organization' %}</th>
+                                        <th>{% trans 'Items' %}</th>
+                                        <th>{% trans 'Create Time' %}</th>
+                                        <th>{% trans 'Download PDF' %}</th>
+                                        <th>{% trans 'View PDF' %}</th>
+                                        <th>{% trans 'Actions' %}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for quote in page_obj %}
                                         <tr>
-                                            <td class="text-bold-500"><a href="{% url 'quote:detail-quotes' quote.pk %}">{{ quote.organization }} Quote #{{ quote.pk }}</a></td>
+                                            <td class="text-bold-500"><a href="{% url 'quote:detail-quotes' quote.pk %}">{{ quote.organization }} {% trans 'Quote' %} #{{ quote.pk }}</a></td>
                                             <td>{% for item in quote.quoteitem_set.all %}
                                                 {{ item.product }} {% endfor %}</td>
                                             <td>{{ quote.create_time.date }} {{ quote.create_time.time }}</td>
-                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:download-pdf-quotes' quote.pk %}">Download</a></td>
-                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:pdf-quotes' quote.pk %}">View</a></td>
-                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:send-email' quote.pk %}?next={{ request.path }}">Send Email</a></td>
+                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:download-pdf-quotes' quote.pk %}">{% trans 'Download' %}</a></td>
+                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:pdf-quotes' quote.pk %}">{% trans 'View' %}</a></td>
+                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:send-email' quote.pk %}?next={{ request.path }}">{% trans 'Send Email' %}</a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

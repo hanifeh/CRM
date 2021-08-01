@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-01 15:36+0430\n"
+"PO-Revision-Date: 2021-08-01 14:28+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: product/models.py:11
+msgid "product name"
+msgstr "نام محصول"
+
+#: product/models.py:13
+msgid "product created date"
+msgstr "تاریخ تولید محصول"
+
+#: product/models.py:14
+msgid "product price"
+msgstr "قیمت محصول"
+
+#: product/models.py:15
+msgid "product tax status"
+msgstr "وضعیت مالیات محصول"
+
+#: product/models.py:16
+msgid "product technical specification"
+msgstr "توضیحات فنی"
+
+#: product/models.py:18
+msgid "product catalogue image"
+msgstr "کاتالوگ محصول عکس"
+
+#: product/models.py:19
+msgid "product catalogue pdf"
+msgstr "کاتالوگ محصول پی دی اف"
+
+#: product/models.py:22
+msgid "product"
+msgstr "محصول"
+
+#: product/models.py:23
+msgid "products"
+msgstr "محصولات"
+
+#: product/templates/list-products.html:4
+#: product/templates/list-products.html:7
+#: product/templates/list-products.html:18
+msgid "Products"
+msgstr "محصولات"
+
+#: product/templates/list-products.html:26
+#: product/templates/list-products.html:40
+msgid "Search"
+msgstr "جستجو"
+
+#: product/templates/list-products.html:35
+#: product/templates/list-products.html:55
+msgid "Product Name"
+msgstr "نام محصول"
+
+#: product/templates/list-products.html:36
+#: product/templates/list-products.html:58
+msgid "Technical Specification"
+msgstr "توضیحات فنی"
+
+#: product/templates/list-products.html:56
+msgid "Price"
+msgstr "قیمت"
+
+#: product/templates/list-products.html:57
+msgid "Tax"
+msgstr "مالیات"
+
+#: product/templates/list-products.html:59
+msgid "Catalogue"
+msgstr "کاتالوگ"
+
+#: product/templates/list-products.html:78
+msgid "PDF"
+msgstr "پی دی اف"
+
+#: product/templates/list-products.html:82
+msgid "Image"
+msgstr "عکس"

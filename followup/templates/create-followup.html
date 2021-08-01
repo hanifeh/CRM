@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Follow Up
+    {% trans 'Follow Up' %}
 {% endblock %}
 {% block heading %}
-    <h3> Create </h3>
-{% endblock %}
-{% block pagetitle %}
-    Follow up
+    <h3> {% trans 'Create' %} </h3>
 {% endblock %}
 {% block content %}
     <section class="" id="success">
@@ -19,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Information</h4>
+                        <h4 class="card-title">{% trans 'Information' %}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -28,13 +25,13 @@
                                 <div class="row">
                                     <div class="col-md-7 col-12">
                                         <div class="form-group">
-                                            <label for="title">Title</label>
+                                            <label for="title">{% trans 'Title' %}</label>
                                             <input type="text" id="title" class="form-control" name="title" required>
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-12">
                                         <div class="form-group">
-                                            <label for="body" class="form-label">Body</label>
+                                            <label for="body" class="form-label">{% trans 'Body' %}</label>
                                             <textarea type="text" id="body" class="form-control" name="body"
                                                       rows="3" required></textarea>
                                         </div>
@@ -44,7 +41,7 @@
                             <br>
                             <div class="col-12 justify-content-end">
                                 <button type="submit" id="submit"
-                                        class="btn btn-primary me-1 mb-1">Create
+                                        class="btn btn-primary me-1 mb-1">{% trans 'Create' %}
                                 </button>
                             </div>
                         </div>

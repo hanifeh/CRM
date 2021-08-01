@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load widget_tweaks %}
 {% load static %}
 {% block title %}
-    New Organization
+    {% trans 'New Organization' %}
 {% endblock %}
 {% block heading %}
-    <h3> Create </h3>
+    <h3> {% trans 'Create Organization' %} </h3>
 {% endblock %}
 {% block NewOrganization %}
     active
-{% endblock %}
-{% block pagetitle %}
-    New Organization
 {% endblock %}
 {% block content %}
     <section id="multiple-column-form">
@@ -24,66 +22,66 @@
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="card-header">
-                                        <h4 class="card-title">Organization Information</h4>
+                                        <h4 class="card-title">{% trans 'Organization Information' %}</h4>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="name">Name</label>
+                                            <label for="name">{% trans 'Name' %}</label>
                                             {% render_field form.name class+="form-control" type="text" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="city">City</label>
+                                            <label for="city">{% trans 'City' %}</label>
                                             {% render_field form.city class+="form-control" type="text" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="organization_phone_number">Contact Number</label>
+                                            <label for="organization_phone_number">{% trans 'Contact Number' %}</label>
                                             {% render_field form.organization_phone_number class+="form-control" type="tel" pattern="0[1-9]{2}[0-9]{8}" maxlength="11" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="organization_email">Email Address</label>
+                                            <label for="organization_email">{% trans 'Email Address' %}</label>
                                             {% render_field form.organization_email class+="form-control" type="email" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="number_of_employees">Number of Employee</label>
+                                            <label for="number_of_employees">{% trans 'Number of Employee' %}</label>
                                             {% render_field form.number_of_employees class+="form-control" type="number" min='1' %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="organization_products">Product</label>
+                                            <label for="organization_products">{% trans 'Product' %}</label>
                                             {% render_field form.organization_products class+="choices form-select multiple-remove" %}
                                         </div>
                                     </div>
                                     <div class="card-header">
-                                        <h4 class="card-title">Purchasing Officer Information</h4>
+                                        <h4 class="card-title">{% trans 'Purchasing Officer Information' %}</h4>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="purchasing_officer_name">Name</label>
+                                            <label for="purchasing_officer_name">{% trans 'Name' %}</label>
                                             {% render_field form.purchasing_officer_name class+="form-control" type="text" %}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="purchasing_officer_phone_number">Phone Number</label>
+                                            <label for="purchasing_officer_phone_number">{% trans 'Phone Number' %}</label>
                                             {% render_field form.purchasing_officer_phone_number class+="form-control" type="tel" pattern="09[0-9]{9}" maxlength="11" %}
                                         </div>
                                     </div>
                                     <div class="col-12 justify-content-end">
                                         <br>
                                         <button type="submit"
-                                                class="btn btn-primary me-1 mb-1">Create
+                                                class="btn btn-primary me-1 mb-1">{% trans 'Create' %}
                                         </button>
                                         <button type="reset"
-                                                class="btn btn-danger me-1 mb-1">Reset
+                                                class="btn btn-danger me-1 mb-1">{% trans 'Reset' %}
                                         </button>
                                     </div>
                                 </div>

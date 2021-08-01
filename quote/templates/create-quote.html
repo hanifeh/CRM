@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load widget_tweaks %}
 {% load static %}
 {% block title %}
-    Create Quote
+    {% trans 'Create Quote' %}
 {% endblock %}
 {% block heading %}
-    <h3> Create New Quote </h3>
+    <h3> {% trans 'Create New Quote' %} </h3>
 {% endblock %}
 {% block NewQuote %}
     active
-{% endblock %}
-{% block pagetitle %}
-    Create Quote
 {% endblock %}
 {% block content %}
     <section id="multiple-column-form">
@@ -19,7 +17,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Quote Information</h4>
+                        <h4 class="card-title">{% trans 'Quote Information' %}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -28,7 +26,7 @@
                                 {{ formset.management_form }}
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="organization">Organization</label>
+                                        <label for="organization">{% trans 'Organization' %}</label>
                                         <select class="choices form-select"
                                                 name="organization" id="organization">
                                             <optgroup label="Organization">
@@ -39,7 +37,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <label for="organization">Items</label>
+                                <label for="organization">{% trans 'Items' %}</label>
                                 <br>
                                 {% for form in formset %}
                                     <div class="formset">
@@ -48,27 +46,26 @@
                                                 <div class="col-md-12 mb-3">
                                                     <div class="input-group mb-3">
                                                         <label class="input-group-text"
-                                                               for="id_form-0-product">Product</label>
+                                                               for="id_form-0-product">{% trans 'Product' %}</label>
                                                         {% render_field form.product class+="form-select" attr='required' %}
                                                         <input type="number" class="form-control" name="form-0-price"
                                                                min="0" id="id_form-0-price"
-                                                               placeholder="Price" required>
+                                                               placeholder="{% trans 'Price' %}" required>
                                                         <input type="number" class="form-control" name="form-0-quantity"
                                                                min="1" id="id_form-0-quantity"
-                                                               placeholder="Quantity" required>
+                                                               placeholder="{% trans 'Quantity' %}" required>
                                                         <input type="number" class="form-control" name="form-0-discount"
                                                                min="0" max="100" id="id_form-0-discount"
-                                                               placeholder="Discount %" required>
+                                                               placeholder="{% trans 'Discount' %} %" required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 {% endfor %}
-                                <button id="add-form" type="button" class="btn btn-secondary me-1 mb-1">Add
-                                    Another Item
+                                <button id="add-form" type="button" class="btn btn-secondary me-1 mb-1">{% trans 'Add Another Item' %}
                                 </button>
-                                <button type="submit" class="btn btn-primary me-1 mb-1">Create Quote</button>
+                                <button type="submit" class="btn btn-primary me-1 mb-1">{% trans 'Create Quote' %}</button>
                             </form>
                         </div>
                     </div>
