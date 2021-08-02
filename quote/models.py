@@ -29,20 +29,20 @@ class Quote(models.Model):
         """
         return self.quoteitem_set.all().aggregate(Sum('quantity')).get('quantity__sum', 0)
 
-    def get_total_start_price(self):
+    def get_total_base_price(self):
         """
         :return: total price before discount and tax
         """
-        return self.quoteitem_set.all().annotate(total_start_price=F('quantity') * F('price')) \
-            .aggregate(Sum('total_start_price'))['total_start_price__sum']
+        return self.quoteitem_set.all().annotate(total_base_price=F('quantity') * F('price')) \
+            .aggregate(Sum('total_base_price'))['total_base_price__sum']
 
     def get_quote_discount(self):
         """
         :return: total discount
         """
         return self.quoteitem_set.all().annotate(
-            total_start_price=F('quantity') * F('price')).annotate(
-            total_discount=(F('discount') * F('total_start_price') / 100)) \
+            total_base_price=F('quantity') * F('price')).annotate(
+            total_discount=(F('discount') * F('total_base_price') / 100)) \
             .aggregate(Sum('total_discount'))['total_discount__sum']
 
     def get_quote_tax(self):
@@ -50,8 +50,8 @@ class Quote(models.Model):
         :return: total tax
         """
         return self.quoteitem_set.all().annotate(
-            total_start_price=F('quantity') * F('price')).annotate(
-            total_price=F('total_start_price') - (F('discount') * F('total_start_price') / 100)).annotate(
+            total_base_price=F('quantity') * F('price')).annotate(
+            total_price=F('total_base_price') - (F('discount') * F('total_base_price') / 100)).annotate(
             total_tax=Case(
                 When(product__tax_status=True, then=(F('total_price') * 9 / 100)),
                 When(product__tax_status=False, then=0),
@@ -64,8 +64,8 @@ class Quote(models.Model):
         :return: total price after discount and tax
         """
         return self.quoteitem_set.all().annotate(
-            total_start_price=F('quantity') * F('price')).annotate(
-            total_price=F('total_start_price') - (F('discount') * F('total_start_price') / 100)).annotate(
+            total_base_price=F('quantity') * F('price')).annotate(
+            total_price=F('total_base_price') - (F('discount') * F('total_base_price') / 100)).annotate(
             total_price=Case(
                 When(product__tax_status=True, then=F('total_price') + (F('total_price') * 9 / 100)),
                 When(product__tax_status=False, then=F('total_price')),

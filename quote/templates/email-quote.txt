@@ -10,6 +10,6 @@ Product Name           Price            Quantity           Discount           Ta
 
 Total Quantity           Total Price            Total Discount           Total Tax          Total Due
 
-          {{ object.get_total_quantity }}                  {{ object.get_total_start_price }}             {{ object.get_quote_discount }}            {{ object.get_quote_tax }}           {{ object.get_total_price }}
+          {{ object.get_total_quantity }}                  {{ object.get_total_base_price }}             {{ object.get_quote_discount }}            {{ object.get_quote_tax }}           {{ object.get_total_price }}
 
 Thanks for your attention.
