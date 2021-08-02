@@ -68,7 +68,7 @@
                                             <td>{{ quote.create_time.date }} {{ quote.create_time.time }}</td>
                                             <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:download-pdf-quotes' quote.pk %}">{% trans 'Download' %}</a></td>
                                             <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:pdf-quotes' quote.pk %}">{% trans 'View' %}</a></td>
-                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:send-email' quote.pk %}?next={{ request.path }}">{% trans 'Send Email' %}</a></td>
+                                            <td><a class="btn btn-primary me-1 mb-1" href="{% url 'quote:send-email' quote.pk %}">{% trans 'Send Email' %}</a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
