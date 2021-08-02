@@ -1,4 +1,5 @@
 from celery import Celery
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from emailhistory.models import EmailHistory
@@ -16,7 +17,7 @@ def send_email_task(body, sender, email):
     :return: none
     """
     try:
-        send_mail('Your Quote', body, f'{sender}', [email], fail_silently=False)
+        send_mail('Your Quote', body, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=False)
         EmailHistory.objects.create(creator=get_user_model().objects.get(username=sender), email=email, email_status=True)
         return 'Email send successfully.'
     except:
