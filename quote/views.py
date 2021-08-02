@@ -82,31 +82,17 @@ class QuoteGetPDF(LoginRequiredMixin, DetailView):
     """
     generate Quote to pdf
     """
-    template_name = 'pdf-quote.html'
     model = models.Quote
 
     def get(self, request, *args, **kwargs):
         quote = models.Quote.objects.get(pk=self.kwargs['pk'], creator=self.request.user)
         html = render_to_string('pdf-quote.html', {'object': quote})
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = f'filename=quote{quote.pk}.pdf'
-        weasyprint.HTML(string=html).write_pdf(response,
-                                               stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])
-        return response
-
-
-class QuoteDownloadPDF(LoginRequiredMixin, DetailView):
-    """
-    Download Quote in pdf
-    """
-    template_name = 'pdf-quote.html'
-    model = models.Quote
-
-    def get(self, request, *args, **kwargs):
-        quote = models.Quote.objects.get(pk=self.kwargs['pk'], creator=self.request.user)
-        html = render_to_string('pdf-quote.html', {'object': quote})
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename=quote{quote.pk}.pdf'
+        download = self.request.GET.get('download', False)
+        if download:
+            response['Content-Disposition'] = f'attachment; filename=quote{quote.pk}.pdf'
+        else:
+            response['Content-Disposition'] = f'filename=quote{quote.pk}.pdf'
         weasyprint.HTML(string=html).write_pdf(response,
                                                stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])
         return response

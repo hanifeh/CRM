@@ -7,6 +7,5 @@ urlpatterns = [
     path('all/', views.QuoteListView.as_view(), name='list-quotes'),
     path('detail/<str:pk>', views.QuoteDetailView.as_view(), name='detail-quotes'),
     path('pdf/<str:pk>', views.QuoteGetPDF.as_view(), name='pdf-quotes'),
-    path('download/pdf/<str:pk>', views.QuoteDownloadPDF.as_view(), name='download-pdf-quotes'),
-    path('send/email/<str:pk>', views.send_email, name='send-email')
+    path('send/email/<str:pk>', views.send_email, name='send-email'),
 ]
