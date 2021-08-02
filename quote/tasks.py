@@ -18,7 +18,7 @@ def send_email_task(body, sender, email):
     try:
         send_mail('Your Quote', body, f'{sender}', [email], fail_silently=False)
         EmailHistory.objects.create(creator=get_user_model().objects.get(username=sender), email=email, email_status=True)
-        return None
+        return 'Email send successfully.'
     except:
         EmailHistory.objects.create(creator=get_user_model().objects.get(username=sender), email=email, email_status=False)
-        return None
+        return 'Email send failed.'
