@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from rest_framework.generics import ListAPIView
@@ -63,15 +62,11 @@ class OrganizationEditView(LoginRequiredMixin, UpdateView):
 
     def form_invalid(self, form):
         messages.error(self.request, _('Invalid input.'))
-        return redirect(reverse_lazy('organizations:edit-organization', kwargs={'slug': self.object.slug}))
+        return super().form_invalid(form)
 
     def form_valid(self, form):
-        try:
-            messages.success(self.request, _('Organization edited successfully.'))
-            return super().form_valid(form)
-        except:
-            messages.error(self.request, _('Invalid input.'))
-            return redirect(reverse_lazy('organizations:edit-organization'))
+        messages.success(self.request, _('Organization edited successfully.'))
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('organizations:detail-organization', kwargs={'slug': self.object.slug})
@@ -84,6 +79,7 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
     form_class = forms.OrganizationCreateForm
     template_name = 'create-organization.html'
     extra_context = {'organization_products': OrganizationProduct.objects.all()}
+    success_url = reverse_lazy('organizations:list-organizations')
 
     def get_form_kwargs(self):
         kw = super().get_form_kwargs()
@@ -91,20 +87,13 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
         return kw
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Invalid input.')
-        return reverse_lazy('organizations:create-organization')
+        messages.error(self.request, _('Invalid input.'))
+        return super().form_invalid(form)
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
-        try:
-            messages.success(self.request, _('Organization created successfully.'))
-            return super().form_valid(form)
-        except:
-            messages.error(self.request, _('Invalid input.'))
-            return redirect(reverse_lazy('organizations:create-organization'))
-
-    def get_success_url(self):
-        return reverse_lazy('organizations:list-organizations')
+        messages.success(self.request, _('Organization created successfully.'))
+        return super().form_valid(form)
 
 
 # API

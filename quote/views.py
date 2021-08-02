@@ -21,10 +21,10 @@ class QuoteCreateView(LoginRequiredMixin, CreateView):
     """
     template_name = "create-quote.html"
 
-    def get(self, *args, **kwargs):
+    def get_context_data(self, **kwargs):
         formset = QuoteItemCreateFormSet(queryset=models.QuoteItem.objects.none())
         organizations = Organization.objects.filter(creator=self.request.user)
-        return self.render_to_response({'formset': formset, 'organizations': organizations})
+        return {'formset': formset, 'organizations': organizations}
 
     def post(self, *args, **kwargs):
         formset = QuoteItemCreateFormSet(data=self.request.POST)
@@ -33,12 +33,7 @@ class QuoteCreateView(LoginRequiredMixin, CreateView):
             quote = models.Quote.objects.create(creator=self.request.user, organization=organization)
             for form in formset:
                 form.instance.quote = quote
-                try:
-                    form.save()
-                except:
-                    quote.delete()
-                    messages.error(self.request, 'Invalid input.')
-                    return redirect(reverse_lazy('quote:create-quote'))
+                form.save()
             messages.success(self.request, _('Quote create successfully.'))
             return redirect(reverse_lazy("quote:list-quotes"))
         else:
