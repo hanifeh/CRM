@@ -15,6 +15,7 @@ class Quote(models.Model):
     creator = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, verbose_name=_('creator'))
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, verbose_name=_('organization'))
     create_time = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('create time'))
+    tax = 9
 
     class Meta:
         verbose_name = _('quote')
@@ -45,7 +46,7 @@ class Quote(models.Model):
             total_discount=(F('discount') * F('total_base_price') / 100)) \
             .aggregate(Sum('total_discount'))['total_discount__sum']
 
-    def get_quote_tax(self):
+    def get_quote_tax(self, tax=tax):
         """
         :return: total tax
         """
@@ -53,13 +54,13 @@ class Quote(models.Model):
             total_base_price=F('quantity') * F('price')).annotate(
             total_price=F('total_base_price') - (F('discount') * F('total_base_price') / 100)).annotate(
             total_tax=Case(
-                When(product__tax_status=True, then=(F('total_price') * 9 / 100)),
+                When(product__tax_status=True, then=(F('total_price') * tax / 100)),
                 When(product__tax_status=False, then=0),
                 output_field=models.PositiveIntegerField()
             )
         ).aggregate(Sum('total_tax'))['total_tax__sum']
 
-    def get_total_price(self):
+    def get_total_price(self, tax=tax):
         """
         :return: total price after discount and tax
         """
@@ -67,7 +68,7 @@ class Quote(models.Model):
             total_base_price=F('quantity') * F('price')).annotate(
             total_price=F('total_base_price') - (F('discount') * F('total_base_price') / 100)).annotate(
             total_price=Case(
-                When(product__tax_status=True, then=F('total_price') + (F('total_price') * 9 / 100)),
+                When(product__tax_status=True, then=F('total_price') + (F('total_price') * tax / 100)),
                 When(product__tax_status=False, then=F('total_price')),
                 output_field=models.PositiveIntegerField()
             )

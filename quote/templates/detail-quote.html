@@ -42,7 +42,7 @@
                                         <td>-{{ quoteitem.discount }}%</td>
                                         <td>
                                             {% if quoteitem.product.tax_status %}
-                                                9%
+                                                {{ object.tax }}%
                                             {% else %}
                                                 0%
                                             {% endif %}
