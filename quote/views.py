@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_http_methods
@@ -29,16 +29,22 @@ class QuoteCreateView(LoginRequiredMixin, CreateView):
     def post(self, *args, **kwargs):
         formset = QuoteItemCreateFormSet(data=self.request.POST)
         if formset.is_valid():
-            organization = Organization.objects.get(pk=self.request.POST['organization'], creator=self.request.user)
-            quote = models.Quote.objects.create(creator=self.request.user, organization=organization)
-            for form in formset:
-                form.instance.quote = quote
-                form.save()
-            messages.success(self.request, _('Quote create successfully.'))
-            return redirect(reverse_lazy("quote:list-quotes"))
+            try:
+                organization = get_object_or_404(Organization, pk=self.request.POST['organization'], creator=self.request.user)
+                quote = models.Quote.objects.create(creator=self.request.user, organization=organization)
+                for form in formset:
+                    form.instance.quote = quote
+                    form.save()
+                messages.success(self.request, _('Quote create successfully.'))
+                return redirect(reverse_lazy("quote:list-quotes"))
+            except:
+                messages.error(self.request, _('Organization not found.'))
+                return redirect(reverse_lazy("quote:list-quotes"))
         else:
             messages.error(self.request, _('Invalid input.'))
-            return redirect(reverse_lazy('quote:create-quote'))
+            response = self.render_to_response(self.get_context_data(form=formset))
+            response.status_code = 400
+            return response
 
 
 class QuoteListView(LoginRequiredMixin, ListView):
@@ -80,17 +86,21 @@ class QuoteGetPDF(LoginRequiredMixin, DetailView):
     model = models.Quote
 
     def get(self, request, *args, **kwargs):
-        quote = models.Quote.objects.get(pk=self.kwargs['pk'], creator=self.request.user)
-        html = render_to_string('pdf-quote.html', {'object': quote})
-        response = HttpResponse(content_type='application/pdf')
-        download = self.request.GET.get('download', False)
-        if download:
-            response['Content-Disposition'] = f'attachment; filename=quote{quote.pk}.pdf'
-        else:
-            response['Content-Disposition'] = f'filename=quote{quote.pk}.pdf'
-        weasyprint.HTML(string=html).write_pdf(response,
-                                               stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])
-        return response
+        try:
+            quote = get_object_or_404(models.Quote, pk=self.kwargs['pk'], creator=self.request.user)
+            html = render_to_string('pdf-quote.html', {'object': quote})
+            response = HttpResponse(content_type='application/pdf')
+            download = self.request.GET.get('download', False)
+            if download:
+                response['Content-Disposition'] = f'attachment; filename=quote{quote.pk}.pdf'
+            else:
+                response['Content-Disposition'] = f'filename=quote{quote.pk}.pdf'
+            weasyprint.HTML(string=html).write_pdf(response,
+                                                   stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])
+            return response
+        except:
+            messages.error(request, _('Quote not found.'))
+            return redirect(reverse_lazy('home'))
 
 
 @require_http_methods(["GET"])
@@ -99,14 +109,14 @@ def send_email(request, pk):
     """
     send quote to organization by email
     """
-    quote = models.Quote.objects.get(pk=pk, creator=request.user)
-    if quote:
+    try:
+        quote = get_object_or_404(models.Quote, pk=pk, creator=request.user)
         body = render_to_string('email-quote.txt', {'object': quote})
         email = quote.organization.organization_email
         sender = request.user.username
         tasks.send_email_task.delay(body, sender, email)
         messages.success(request, _('Send email request saved successfully.'))
         return redirect(reverse_lazy('quote:list-quotes'))
-    else:
-        messages.error(request, _('Permission denied.'))
-        return redirect(reverse_lazy('quote:list-quotes'))
+    except:
+        messages.error(request, _('Quote not found.'))
+        return redirect(reverse_lazy('home'))

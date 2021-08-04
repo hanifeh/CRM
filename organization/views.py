@@ -62,7 +62,9 @@ class OrganizationEditView(LoginRequiredMixin, UpdateView):
 
     def form_invalid(self, form):
         messages.error(self.request, _('Invalid input.'))
-        return super().form_invalid(form)
+        response = super().form_invalid(form)
+        response.status_code = 400
+        return response
 
     def form_valid(self, form):
         messages.success(self.request, _('Organization edited successfully.'))
@@ -88,7 +90,9 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
 
     def form_invalid(self, form):
         messages.error(self.request, _('Invalid input.'))
-        return super().form_invalid(form)
+        response = super().form_invalid(form)
+        response.status_code = 400
+        return response
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
