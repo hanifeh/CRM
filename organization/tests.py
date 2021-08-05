@@ -48,14 +48,16 @@ class OrganizationTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         response = self.client.post(reverse('organizations:create-organization'), {'creator': user,
                                                                                    'name': 'test',
+                                                                                   'city': 'testestan',
                                                                                    'organization_phone_number': '02133011254',
                                                                                    'organization_email': 'test@testmail.com',
                                                                                    'number_of_employees': '1',
                                                                                    'purchasing_officer_name': 'testname',
-                                                                                   'purchasing_officer_phone_number': '09123456789'})
-        self.assertEqual(response.status_code, 200)
+                                                                                   'purchasing_officer_phone_number': '09123546789'})
+        self.assertEqual(response.status_code, 302)
         response = self.client.post(reverse('organizations:create-organization'), {'creator': user,
                                                                                    'name': 'test',
+                                                                                   'city': 'testestan',
                                                                                    'organization_phone_number': '02133011254',
                                                                                    'organization_email': 'test@testmail.com',
                                                                                    'number_of_employees': '1',

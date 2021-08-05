@@ -8,6 +8,7 @@ class OrganizationAdmin(admin.ModelAdmin):
     organization admin setting
     """
     list_display = (
+        'pk',
         'name',
         'city',
         'organization_phone_number',

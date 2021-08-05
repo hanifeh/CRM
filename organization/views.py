@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
-from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from organization import models, forms, serializers
 from organization.models import OrganizationProduct
@@ -103,7 +103,7 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
 # API
 
 
-class OrganizationListAPI(ListAPIView):
+class OrganizationViewSetAPI(ModelViewSet):
     """
     API with jwt for show all organization for one user
     """
@@ -115,3 +115,6 @@ class OrganizationListAPI(ListAPIView):
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.filter(creator=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)

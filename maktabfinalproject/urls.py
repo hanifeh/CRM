@@ -20,8 +20,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
-from organization.views import OrganizationListAPI
+from organization.views import OrganizationViewSetAPI
+from rest_framework.routers import DefaultRouter
 
+
+router = DefaultRouter()
+router.register('organization', OrganizationViewSetAPI)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +39,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/organizations', OrganizationListAPI.as_view(), name='organization-list-api'),
+    path('api/v1/', include(router.urls)),
     path('__debug__/', include(debug_toolbar.urls)),
 ]
 
