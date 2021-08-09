@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.html import strip_tags
 from django.views.decorators.http import require_http_methods
 from django.views.generic import ListView, DetailView, CreateView
 from . import models, tasks
@@ -111,7 +112,7 @@ def send_email(request, pk):
     """
     try:
         quote = get_object_or_404(models.Quote, pk=pk, creator=request.user)
-        body = render_to_string('email-quote.txt', {'object': quote})
+        body = render_to_string('email-quote.html', {'object': quote})
         email = quote.organization.organization_email
         sender = request.user.username
         tasks.send_email_task.delay(body, sender, email)
