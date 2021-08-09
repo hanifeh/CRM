@@ -7,7 +7,6 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
-from django.utils.html import strip_tags
 from django.views.decorators.http import require_http_methods
 from django.views.generic import ListView, DetailView, CreateView
 from . import models, tasks
