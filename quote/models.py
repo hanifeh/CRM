@@ -93,4 +93,7 @@ class QuoteItem(models.Model):
         return f'{self.quote} {self.product}'
 
     def get_total_price(self):
+        """
+        :return: total price
+        """
         return self.quantity * self.price

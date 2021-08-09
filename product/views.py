@@ -11,6 +11,9 @@ class ProductListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
+        """
+        search on Product list
+        """
         search = self.request.GET.get('search', None)
         mode = self.request.GET.get('mode', None)
         if mode == 'name':

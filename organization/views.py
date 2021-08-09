@@ -19,6 +19,9 @@ class OrganizationsListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
+        """
+        give a list of organization for one user and search on organizations
+        """
         search = self.request.GET.get('search', None)
         mode = self.request.GET.get('mode', None)
         if mode == 'name':
@@ -44,6 +47,9 @@ class OrganizationDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail-organization.html'
 
     def get_queryset(self):
+        """
+        check organization creator and request user
+        """
         organization = models.Organization.objects.filter(slug=self.kwargs['slug'], creator=self.request.user)
         return organization
 
@@ -57,6 +63,9 @@ class OrganizationEditView(LoginRequiredMixin, UpdateView):
     form_class = forms.OrganizationEditForm
 
     def get_queryset(self):
+        """
+        check organization creator and request user
+        """
         organization = models.Organization.objects.filter(slug=self.kwargs['slug'], creator=self.request.user)
         return organization
 
@@ -71,6 +80,9 @@ class OrganizationEditView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
+        """
+        back to detail view
+        """
         return reverse_lazy('organizations:detail-organization', kwargs={'slug': self.object.slug})
 
 
@@ -84,6 +96,9 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('organizations:list-organizations')
 
     def get_form_kwargs(self):
+        """
+        add request user to form
+        """
         kw = super().get_form_kwargs()
         kw.update({'creator': self.request.user})
         return kw
@@ -113,8 +128,14 @@ class OrganizationViewSetAPI(ModelViewSet):
     queryset = models.Organization.objects.all()
 
     def get_queryset(self):
+        """
+        list of organization for one user
+        """
         qs = super().get_queryset()
         return qs.filter(creator=self.request.user)
 
     def perform_create(self, serializer):
+        """
+        add request user to serializer
+        """
         serializer.save(creator=self.request.user)

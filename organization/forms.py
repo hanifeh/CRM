@@ -8,6 +8,9 @@ class OrganizationCreateForm(forms.ModelForm):
     """
 
     def __init__(self, *args, **kwargs):
+        """
+        add creator to form
+        """
         self.creator = kwargs.pop('creator')
         super().__init__(*args, **kwargs)
 

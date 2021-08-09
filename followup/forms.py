@@ -8,7 +8,7 @@ class FollowUpCreateForm(forms.ModelForm):
     """
 
     def __init__(self, *args, **kwargs):
-        self.creator = kwargs.pop('creator')
+        self.creator = kwargs.pop('creator')  # add creator to form
         super().__init__(*args, **kwargs)
 
     class Meta:

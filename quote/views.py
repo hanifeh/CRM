@@ -22,25 +22,28 @@ class QuoteCreateView(LoginRequiredMixin, CreateView):
     template_name = "create-quote.html"
 
     def get_context_data(self, **kwargs):
+        """
+        send formset and user organizations list to template
+        """
         formset = QuoteItemCreateFormSet(queryset=models.QuoteItem.objects.none())
         organizations = Organization.objects.filter(creator=self.request.user)
         return {'formset': formset, 'organizations': organizations}
 
     def post(self, *args, **kwargs):
-        formset = QuoteItemCreateFormSet(data=self.request.POST)
+        formset = QuoteItemCreateFormSet(data=self.request.POST)  # add request to formset
         if formset.is_valid():
             try:
-                organization = get_object_or_404(Organization, pk=self.request.POST['organization'], creator=self.request.user)
-                quote = models.Quote.objects.create(creator=self.request.user, organization=organization)
+                organization = get_object_or_404(Organization, pk=self.request.POST['organization'], creator=self.request.user)  # check creator of organization and request user
+                quote = models.Quote.objects.create(creator=self.request.user, organization=organization)  # create quote
                 for form in formset:
-                    form.instance.quote = quote
+                    form.instance.quote = quote  # add quote to all quote items
                     form.save()
                 messages.success(self.request, _('Quote create successfully.'))
                 return redirect(reverse_lazy("quote:list-quotes"))
             except:
                 messages.error(self.request, _('Organization not found.'))
                 return redirect(reverse_lazy("quote:list-quotes"))
-        else:
+        else:  # form not valid
             messages.error(self.request, _('Invalid input.'))
             response = self.render_to_response(self.get_context_data(form=formset))
             response.status_code = 400
@@ -56,6 +59,9 @@ class QuoteListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
+        """
+        search on quote list
+        """
         search = self.request.GET.get('search', None)
         mode = self.request.GET.get('mode', None)
         if mode == 'organization':
@@ -75,6 +81,9 @@ class QuoteDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail-quote.html'
 
     def get_queryset(self):
+        """
+        check request user and creator
+        """
         quote = models.Quote.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
         return quote
 
@@ -87,16 +96,16 @@ class QuoteGetPDF(LoginRequiredMixin, DetailView):
 
     def get(self, request, *args, **kwargs):
         try:
-            quote = get_object_or_404(models.Quote, pk=self.kwargs['pk'], creator=self.request.user)
+            quote = get_object_or_404(models.Quote, pk=self.kwargs['pk'], creator=self.request.user)  # check creator of organization and request user
             html = render_to_string('pdf-quote.html', {'object': quote})
             response = HttpResponse(content_type='application/pdf')
             download = self.request.GET.get('download', False)
             if download:
-                response['Content-Disposition'] = f'attachment; filename=quote{quote.pk}.pdf'
+                response['Content-Disposition'] = f'attachment; filename=quote{quote.pk}.pdf'  # download pdf
             else:
-                response['Content-Disposition'] = f'filename=quote{quote.pk}.pdf'
+                response['Content-Disposition'] = f'filename=quote{quote.pk}.pdf'  # view pdf
             weasyprint.HTML(string=html).write_pdf(response,
-                                                   stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])
+                                                   stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/quote.css')])  # add css to html
             return response
         except:
             messages.error(request, _('Quote not found.'))
@@ -110,7 +119,7 @@ def send_email(request, pk):
     send quote to organization by email
     """
     try:
-        quote = get_object_or_404(models.Quote, pk=pk, creator=request.user)
+        quote = get_object_or_404(models.Quote, pk=pk, creator=request.user)  # check creator of organization and request user
         body = render_to_string('email-quote.html', {'object': quote})
         email = quote.organization.organization_email
         sender = request.user.username

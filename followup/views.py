@@ -13,6 +13,9 @@ class FollowUpDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail-followup.html'
 
     def get_queryset(self):
+        """
+        return followup and check creator
+        """
         followup = models.FollowUp.objects.filter(slug=self.kwargs['slug'], creator=self.request.user)
         return followup
 
@@ -25,6 +28,9 @@ class FollowUpCreateView(LoginRequiredMixin, CreateView):
     form_class = forms.FollowUpCreateForm
 
     def get_form_kwargs(self):
+        """
+        add user to form
+        """
         kw = super().get_form_kwargs()
         kw.update({'creator': self.request.user})
         return kw
@@ -33,7 +39,7 @@ class FollowUpCreateView(LoginRequiredMixin, CreateView):
         return JsonResponse({'massages': _("Invalid input.")}, status=400)
 
     def form_valid(self, form):
-        if not form.instance.organization.creator == self.request.user:
+        if not form.instance.organization.creator == self.request.user:  # check user and creator
             return JsonResponse({'massages': _("Organization not found.")}, status=400)
         form.instance.creator = self.request.user
         self.object = form.save()
