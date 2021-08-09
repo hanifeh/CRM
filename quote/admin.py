@@ -2,11 +2,25 @@ from django.contrib import admin
 from .models import Quote, QuoteItem
 
 
+class QuoteItemInLine(admin.TabularInline):
+    """
+    Quote Item In Line setting
+    """
+    model = QuoteItem
+    fields = (
+        'product',
+        'quantity',
+        'price',
+        'discount',
+    )
+
+
 @admin.register(Quote)
 class QuoteAdmin(admin.ModelAdmin):
     """
     Quote admin setting
     """
+    inlines = [QuoteItemInLine]
     list_display = (
         'pk',
         'organization',
@@ -23,35 +37,4 @@ class QuoteAdmin(admin.ModelAdmin):
     list_filter = (
         'creator',
         'create_time',
-    )
-
-
-@admin.register(QuoteItem)
-class QuoteItemAdmin(admin.ModelAdmin):
-    """
-    Quote Item admin setting
-    """
-    list_display = (
-        'pk',
-        'quote',
-        'product',
-        'price',
-        'quantity',
-        'discount',
-    )
-    list_display_links = (
-        'pk',
-        'quote',
-    )
-    list_filter = (
-        'product',
-    )
-    search_fields = (
-        'quote__icontains',
-        'product__icontains',
-    )
-    list_editable = (
-        'price',
-        'quantity',
-        'discount',
     )
