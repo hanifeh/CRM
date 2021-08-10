@@ -14,11 +14,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="row">
+                {# header #}
                     <div class="card-header col-md-5 col-12">
                         <h4 class="card-title">{% trans 'Products' %}</h4>
                     </div>
+                {# end header #}
                     {% if page_obj %}
                     <div class="card-header col-md-6 col-12">
+                    {# search #}
                         <form action="" method="get">
                             <div class="row">
                                 <div class="col-md-5 col-12">
@@ -41,12 +44,13 @@
                                 </div>
                             </div>
                         </form>
+                    {# end search #}
                     </div>
                     {% endif %}
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <!-- table -->
+                        {# product list table #}
                         {% if page_obj %}
                             <div class="table-responsive">
                                 <table class="table table-light mb-0">
@@ -86,9 +90,11 @@
                                     {% endfor %}
                                     </tbody>
                                 </table>
+                            {# end product list table #}
                             </div>
                             <br>
                             <div class="card-body">
+                            {# pagination #}
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination pagination-primary justify-content-center">
                                     <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}"><a class="page-link" href="?page=1">
@@ -112,6 +118,7 @@
                                     </a></li>
                                 </ul>
                             </nav>
+                            {# end pagination #}
                         </div>
                         {% endif %}
                     </div>

@@ -9,9 +9,12 @@
 {% block content %}
     <div class="col-12 col-lg-6">
         <div class="card">
+            {# header #}
             <div class="card-header">
                 <h4>{% trans 'Information' %}</h4>
             </div>
+            {# end header #}
+            {# body #}
             <div class="card-body">
                 {% trans 'Body' %} : {{ object.body }}
                 <br>
@@ -19,6 +22,7 @@
                 <br>
                 {% trans 'Created Time' %} : {{ object.created_time.date }} {{ object.created_time.time }}
             </div>
+            {# end body #}
         </div>
     </div>
 {% endblock %}

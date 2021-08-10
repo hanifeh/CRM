@@ -10,9 +10,12 @@
 {% block content %}
     <div class="col-12 col-lg-6">
         <div class="card">
+            {# header #}
             <div class="card-header">
                 <h4>{% trans 'Organizations Information' %}</h4>
             </div>
+            {# end header #}
+            {# organ body #}
             <div class="card-body">
                 {% trans 'Contact Number' %} : {{ object.organization_phone_number }}
                 <br>
@@ -26,24 +29,29 @@
                 <br>
                 {% trans 'Suggested Product' %} : {% for product in object.get_suggestion_products %} ,{{ product }} {% endfor %}
             </div>
+            {# end organ body #}
         </div>
     </div>
     <div class="col-12 col-lg-6">
         <div class="card">
+            {# header #}
             <div class="card-header">
                 <h4>{% trans 'Purchasing Officer Information' %}</h4>
             </div>
+            {# end header #}
+            {# officer body #}
             <div class="card-body">
                 {% trans 'Name' %} : {{ object.purchasing_officer_name }}
                 <br>
                 {% trans 'Phone Number' %} : {{ object.purchasing_officer_phone_number }}
             </div>
+            {# end officer body #}
         </div>
     </div>
     <div class="col-12">
         <div class="card">
             <div class="card-content">
-                <!-- table -->
+                {# follow up table #}
                 {% if object.followup_set.all %}
                     <div class="table-responsive">
                         <table class="table table-light mb-0">
@@ -73,6 +81,7 @@
                     </div>
                     <br>
                 {% endif %}
+            {# end followup table #}
             </div>
         </div>
     </div>

@@ -18,12 +18,16 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
+                            {# form #}
                             <form class="form" method="post">
                                 {% csrf_token %}
                                 <div class="row">
+                                    {# header #}
                                     <div class="card-header">
                                         <h4 class="card-title">{% trans 'Organization Information' %}</h4>
                                     </div>
+                                    {# end header #}
+                                    {# organ form #}
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="name">{% trans 'Name' %}</label>
@@ -60,9 +64,13 @@
                                             {% render_field form.organization_products class+="choices form-select multiple-remove" %}
                                         </div>
                                     </div>
+                                    {# end organ form #}
+                                    {# header #}
                                     <div class="card-header">
                                         <h4 class="card-title">{% trans 'Purchasing Officer Information' %}</h4>
                                     </div>
+                                    {# end header #}
+                                    {# purchas officer form #}
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="purchasing_officer_name">{% trans 'Name' %}</label>
@@ -75,6 +83,8 @@
                                             {% render_field form.purchasing_officer_phone_number class+="form-control" type="tel" pattern="09[0-9]{9}" maxlength="11" %}
                                         </div>
                                     </div>
+                                    {# end purchas officer form #}
+                                    {# submit button and reset #}
                                     <div class="col-12 justify-content-end">
                                         <br>
                                         <button type="submit"

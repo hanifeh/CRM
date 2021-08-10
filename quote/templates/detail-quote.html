@@ -11,16 +11,18 @@
         <div class="col-12">
             <div class="card">
                 <div class="row">
+                    {# header #}
                     <div class="card-header col-md-8 col-12">
                         <h4 class="card-title">{% trans 'Quote for' %} {{ object.organization.name }} by {{ object.creator }}</h4>
                     </div>
                     <div class="card-header col-md-4 col-12">
                         <h4 class="card-title">{% trans 'Quote Date' %} : {{ object.create_time.date }}</h4>
                     </div>
+                    {# end header #}
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <!-- table -->
+                        {# quote items table #}
                         <div class="table-responsive">
                             <table class="table table-light mb-0">
                                 <thead class="thead-dark">
@@ -52,7 +54,9 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+                        {# end quote item table #}
                             <br>
+                        {# total table #}
                             <div class="table-responsive">
                                 <table class="table table-light mb-0">
                                     <thead class="thead-dark">
@@ -73,6 +77,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                        {# end total table #}
                         </div>
                         <br>
                     </div>

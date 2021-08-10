@@ -27,6 +27,7 @@
     <div id="sidebar" class="active">
         <div class="sidebar-wrapper active">
             <div class="sidebar-header">
+                {# logo #}
                 <div class="d-flex justify-content-between">
                     <div class="logo">
                         <a href="{% url 'home' %}"><img src="{% static 'images/logo/logo.png' %}" alt="Logo" srcset=""></a>
@@ -35,8 +36,10 @@
                         <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                     </div>
                 </div>
+                {# end logo #}
             </div>
             <div class="sidebar-menu">
+            {# side navbar #}
                 <ul class="menu">
                     <li class="sidebar-title">{% trans 'Menu' %}</li>
                     {% if not user.is_authenticated %}
@@ -94,6 +97,7 @@
                         </li>
                     {% endif %}
                 </ul>
+            {# end side navbar #}
             </div>
             <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
         </div>
@@ -134,6 +138,7 @@
                 {% endblock %}
             </section>
         </div>
+        {# footer #}
         <footer>
             <div class="footer clearfix mb-0 text-muted">
                 <div class="float-start">
@@ -145,6 +150,7 @@
                 </div>
             </div>
         </footer>
+        {# end footer #}
     </div>
 </div>
 

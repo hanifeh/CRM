@@ -18,9 +18,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="row">
+                {# header #}
                     <div class="card-header col-md-5 col-12">
                         <h4 class="card-title">{{ user.username | capfirst }} {% trans 'Organizations' %}</h4>
                     </div>
+                {# end header #}
+                {# search #}
                     {% if page_obj %}
                     <div class="card-header col-md-6 col-12">
                         <form action="" method="get">
@@ -49,10 +52,11 @@
                         </form>
                     </div>
                     {% endif %}
+                {# end search #}
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <!-- table -->
+                        {# organ list table #}
                         {% if page_obj %}
                             <div class="table-responsive">
                                 <table class="table table-light mb-0">
@@ -80,7 +84,7 @@
                                                         data-bs-target="#{{ organization.slug }}">
                                                     {% trans 'Report' %}
                                                 </button>
-                                                <!--login form Modal -->
+                                                {# followup create modal #}
                                                 <div class="modal fade text-left" id="{{ organization.slug }}"
                                                      tabindex="-1"
                                                      role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
@@ -96,6 +100,7 @@
                                                                     <i data-feather="x"></i>
                                                                 </button>
                                                             </div>
+                                                            {# follow up create form #}
                                                             <form class="form" method="post">
                                                                 <div class="modal-body">
                                                                     <input type="hidden" id="organization"
@@ -127,17 +132,21 @@
                                                                     </button>
                                                                 </div>
                                                             </form>
+                                                            {# end followup create form #}
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {# end followup create modal #}
                                             </td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>
+                            {# end organ list table #}
                             </div>
                             <br>
-                           <div class="card-body">
+                            <div class="card-body">
+                            {# pagination #}
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination pagination-primary justify-content-center">
                                     <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}"><a class="page-link" href="?page=1">
@@ -161,6 +170,7 @@
                                     </a></li>
                                 </ul>
                             </nav>
+                            {# end pagination #}
                         </div>
                         {% endif %}
                     </div>

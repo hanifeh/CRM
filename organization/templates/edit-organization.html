@@ -14,12 +14,15 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
+                            {# organ edit form #}
                             <form class="form" method="post">
                                 {% csrf_token %}
                                 <div class="row">
+                                    {# header #}
                                     <div class="card-header">
                                         <h4 class="card-title">{% trans 'Organizations Information' %}</h4>
                                     </div>
+                                    {# end header #}
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="name">{% trans 'Name' %}</label>
@@ -56,9 +59,11 @@
                                             {% render_field form.organization_products class+="choices form-select multiple-remove" %}
                                         </div>
                                     </div>
+                                    {# header #}
                                     <div class="card-header">
                                         <h4 class="card-title">{% trans 'Purchasing Officer Information' %}</h4>
                                     </div>
+                                    {# end header #}
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="purchasing_officer_name">{% trans 'Name' %}</label>
@@ -79,6 +84,7 @@
                                     </div>
                                 </div>
                             </form>
+                            {# end oragn edit form #}
                         </div>
                     </div>
                 </div>

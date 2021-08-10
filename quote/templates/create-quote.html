@@ -16,11 +16,14 @@
         <div class="row match-height">
             <div class="col-12">
                 <div class="card">
+                {# header #}
                     <div class="card-header">
                         <h4 class="card-title">{% trans 'Quote Information' %}</h4>
                     </div>
+                {# end header #}
                     <div class="card-content">
                         <div class="card-body">
+                        {# quote create form #}
                             <form id="form-container" method="POST">
                                 {% csrf_token %}
                                 {{ formset.management_form }}
@@ -39,6 +42,7 @@
                                 </div>
                                 <label for="organization">{% trans 'Items' %}</label>
                                 <br>
+                                {# quote items create form #}
                                 {% for form in formset %}
                                     <div class="formset">
                                         <div class="col-md-6 col-12">
@@ -63,10 +67,12 @@
                                         </div>
                                     </div>
                                 {% endfor %}
+                                {# end quote items create form #}
                                 <button id="add-form" type="button" class="btn btn-secondary me-1 mb-1">{% trans 'Add Another Item' %}
                                 </button>
                                 <button type="submit" class="btn btn-primary me-1 mb-1">{% trans 'Create Quote' %}</button>
                             </form>
+                            {# end quote create form #}
                         </div>
                     </div>
                 </div>
