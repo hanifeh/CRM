@@ -13,7 +13,7 @@
                 <div class="row">
                     {# header #}
                     <div class="card-header col-md-8 col-12">
-                        <h4 class="card-title">{% trans 'Quote for' %} {{ object.organization.name }} by {{ object.creator }}</h4>
+                        <h4 class="card-title">{% trans 'Quote for' %} {{ object.organization.name }} {% trans 'by' %} {{ object.creator }}</h4>
                     </div>
                     <div class="card-header col-md-4 col-12">
                         <h4 class="card-title">{% trans 'Quote Date' %} : {{ object.create_time.date }}</h4>

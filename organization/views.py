@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from rest_framework.permissions import IsAuthenticated
@@ -111,8 +112,21 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
-        messages.success(self.request, _('Organization created successfully.'))
-        return super().form_valid(form)
+        try:
+            """
+            check slug is available
+            """
+            self.object = form.save()
+            messages.success(self.request, _('Organization created successfully.'))
+            return HttpResponseRedirect(self.get_success_url())
+        except:
+            """
+            handle slug error
+            """
+            messages.error(self.request, _('Invalid input.'))
+            response = self.render_to_response(self.get_context_data(form=form))
+            response.status_code = 400
+            return response
 
 
 # API
